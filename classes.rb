@@ -1,10 +1,9 @@
 class Human
     attr_accessor :health, :strength, :toughness, :location
-    def initialize(name, health, strength, toughness, location=false)
+    def initialize(name, health, strength, location=false, prefers_attack=false)
         @name = name
         @health = health
         @strength = strength
-        @toughness = toughness
         @location = location
         @is_able_to_fight = true   #changes to false if certain limbs get too damaged
 
@@ -14,11 +13,19 @@ class Human
             "ll" => ["left leg", 30],
             "rl" => ["right leg", 30],
             "h" => ["head", 25],
-            "groin" => ["groin", 15],
-            "torso" => ["torso", 50]
+            "g" => ["groin", 15],
+            "t" => ["torso", 50]
         }
-
-        
+    end
+    def limbs
+        return @limbs
+    end
+    def limb_damage(limb, damage)
+        @limbs[limb][1] -= damage
+    end
+    def get_random_limb
+        random_limb = @limbs.values.sample   #Get a random sample from the limbs hash
+        return random_limb[0].to_s
     end
     def get_combat_options
         if @limbs["ra"][1] > 0 or @limbs["la"][1] > 0
@@ -53,15 +60,16 @@ class Human
     def take_damage(body_part, damage)
         @limbs[body_part][1] -= damage   #does this work?
         puts "#{@limbs[body_part][0]} took #{damage} damage."
-        @is_able_to_fight = check_ability_to_fight()
+        @is_able_to_fight = check_ability_to_fight
     end
 
-    def check_ability_to_fight()
+    def check_ability_to_fight
         if @limbs["h"][1] <= 0 or @limbs["t"][1] <= 0 or @limbs["g"][1] <= 0
-            return false   #head, torso ot groin are destroyed
+            return false   #head, torso or groin are destroyed
         elsif @limbs["ra"][1] <= 0 and @limbs["la"][1] <= 0 and @limbs["rl"][1] <= 0 and @limbs["ll"][1] <= 0 
             return false   #all 4 limbs are destroyed
         end
+        return true
     end
 
     def is_able_to_fight
@@ -82,51 +90,21 @@ class Human
     end
 end
 
-class Player < Human
-    def fight(opponent)
-        attack_selection = false
-        target_selection = false
-        puts "#{@name} is attacking #{opponent.name} in area #{@location}"
-
-        while opponent.is_able_to_fight == true
-            "Make a choice:"
-            case self.get_combat_options
-            when "pk"
-                puts "(p)unch or (k)ick"
-            when "p"
-                puts "(p)unch"
-            when "k"
-                puts "(k)ick"
-            when false
-                puts "(r)oll away! (You have no usable limbs!)"
-            else
-                "invalid input..."
-            end
-            attack_selection = gets.chomp
-            if attack_selection == "p" then damage = higher(@limbs["ra"][1], @limbs["la"][1]) end
-                p "damage: #{damage}"
-            puts "Where would you like to target?"
-            puts "(h)ead (ra)right arm (la)left arm (ll)left leg (rl)right leg (g)roin (t)orso (h)ead"
-            target_selection = gets.chomp
-
-            if attack_has_hit(attack_selection)
-                opponent.take_damage(target_selection, damage)
-            else
-                puts "you missed!"
-            end
-        end
-        puts "#{opponent.name} is too damaged to continue! \n You win!"
-        
-    end
-    def higher(var1, var2)
-        if var1 > var2 
-            return var1 
-        else
-            return var2
-        end
-    end
-    
+class Player < Human    
 end
 
 class Enemy < Human
+    def initialize(name, health, strength, location=false, prefers_attack=false)
+        super
+        @prefers_attack = prefers_attack
+    end
+    def attack_player
+        if @prefers_attack == false
+            rand(1..2) == 1 ? attack_type = "p": attack_type = "k"
+        end
+        puts "#{@name} attacks you..."
+    end
+    def prefers_attack
+        return @prefers_attack
+    end
 end
