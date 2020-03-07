@@ -1,10 +1,11 @@
 def fight(player, opponent)
+    puts "#{location_descriptions(opponent.location)}"
     attack_selection = false
     target_selection = false
-    puts "#{player.name} is attacking #{opponent.name} in area #{@location}"
+    puts "#{player.name} is attacking #{opponent.name}..."
 
     while opponent.is_able_to_fight == true
-        "Make a choice:"
+        puts "Make a choice:"
         case player.get_combat_options
         when "pk"
             puts "(p)unch or (k)ick"
@@ -36,13 +37,28 @@ def fight(player, opponent)
         end
         
         #Now opponent attacks player...
+        target_selection = player.get_random_limb
+
         if opponent.prefers_attack == "p"
-            puts "#{opponent.name} tries to punch you in your #{player.get_random_limb}"
+            puts "#{opponent.name} tries to punch you in your #{target_selection}"
+            attack_selection = "p"
         elsif opponent.prefers_attack == "k"
-            puts "#{opponent.name} tries to kick you in your #{player.get_random_limb}"
+            puts "#{opponent.name} tries to kick you in your #{target_selection}"
+            attack_selection = "k"
         else
             rand(1..2) == 1 ? attack_selection = "p" : attack_selection = "k"
-            puts "#{opponent.name} tries to attack you in your #{player.get_random_limb}"
+            puts "#{opponent.name} tries to #{attack_selection == "p" ? "punch" : "kick"} you in your #{target_selection}"
+        end
+        
+        if opponent.attack_has_hit(attack_selection)
+            if attack_selection == "p"
+                damage = rand(5..10) + (higher(opponent.limbs["ra"][1], opponent.limbs["la"][1]))/10
+            elsif attack_selection == "k"
+                damage = rand(8..15) + (higher(opponent.limbs["rl"][1], opponent.limbs["ll"][1]))/10
+            end
+            puts "#{opponent.name} hits you in the #{target_selection} for #{damage} damage"
+        else
+            puts "...And misses."    
         end
     end
     puts "#{opponent.name} is too damaged to continue! \n You win!"

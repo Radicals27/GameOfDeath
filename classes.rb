@@ -1,9 +1,10 @@
 class Human
     attr_accessor :health, :strength, :toughness, :location
-    def initialize(name, health, strength, location=false, prefers_attack=false)
+    def initialize(name, health, strength, accuracy, location=false, prefers_attack=false)
         @name = name
         @health = health
         @strength = strength
+        @accuracy = accuracy
         @location = location
         @is_able_to_fight = true   #changes to false if certain limbs get too damaged
 
@@ -46,11 +47,11 @@ class Human
 
     def attack_has_hit(attack_type)
         if attack_type == "p"
-            if rand(1..100) > 10
+            if rand(1..100) < @accuracy
                 return true   #did hit
             end
         elsif attack_type == "k"
-            if rand(1..100) > 30
+            if (rand(1..100)-15) < @accuracy
                 return true   #did hit
             end
         end
@@ -94,7 +95,7 @@ class Player < Human
 end
 
 class Enemy < Human
-    def initialize(name, health, strength, location=false, prefers_attack=false)
+    def initialize(name, health, strength, accuracy, location=false, prefers_attack=false)
         super
         @prefers_attack = prefers_attack
     end
