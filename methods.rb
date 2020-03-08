@@ -1,6 +1,12 @@
-def fight(player, opponent)
+def fight(player, location, enemies)
+    for e in enemies
+        if e.location == player.location
+            opponent = e
+        end
+    end
+
     slow_print(location_descriptions(opponent.location))
-    puts "#{player.name} is attacking #{opponent.name}..."
+    puts "\n#{player.name} is attacking #{opponent.name}...".red
 
     while player.is_able_to_fight and opponent.is_able_to_fight
         attack_selection = nil
@@ -34,9 +40,10 @@ def fight(player, opponent)
         if player.attack_has_hit(attack_selection)
             opponent.take_damage(target_selection, damage)
             system "clear"
-            puts "#{opponent.name} took #{damage} damage to the #{opponent.limbs[target_selection][0]}"
+            puts "#{opponent.name} took #{damage} damage to the #{opponent.limbs[target_selection][0]}".red
         else
-            puts "you missed!"
+            system "clear"
+            puts "you missed!".yellow
         end
         
         #Now opponent attacks player...
@@ -44,14 +51,14 @@ def fight(player, opponent)
             target_selection = player.get_random_limb
 
             if opponent.prefers_attack == "p"
-                puts "#{opponent.name} tries to punch you in your #{target_selection}"
+                puts "#{opponent.name} tries to punch you in your #{target_selection}".red
                 attack_selection = "p"
             elsif opponent.prefers_attack == "k"
-                puts "#{opponent.name} tries to kick you in your #{target_selection[0]}"
+                puts "#{opponent.name} tries to kick you in your #{target_selection[0]}".red
                 attack_selection = "k"
             else
                 rand(1..2) == 1 ? attack_selection = "p" : attack_selection = "k"
-                puts "#{opponent.name} tries to #{attack_selection == "p" ? "punch" : "kick"} you in your #{target_selection[0]}"
+                puts "#{opponent.name} tries to #{attack_selection == "p" ? "punch" : "kick"} you in your #{target_selection[0]}".red
             end
             
             if opponent.attack_has_hit(attack_selection)
@@ -62,23 +69,23 @@ def fight(player, opponent)
                     damage = rand(8..15) + (higher(opponent.limbs["rl"][1], opponent.limbs["ll"][1]))/10
                     player.take_damage(player.limbs.key(target_selection), damage)
                 end
-                puts "#{opponent.name} hits you in the #{target_selection[0]} for #{damage} damage"
+                puts "#{opponent.name} hits you in the #{target_selection[0]} for #{damage} damage".red
             else
-                puts "...And misses."    
+                puts "...And misses.".yellow
             end
         else
-            puts "#{opponent.name} is too damaged to continue!\nYou win!"
+            puts "#{opponent.name} is too damaged to continue!\nYou win!".green
+            player.location += 1
         end
     end
     if !player.is_able_to_fight
-        puts "You are too damaged to continue!"
+        puts "You are too damaged to continue!".red
         slow_print("GAME OVER!")
     end
 end
 
 def slow_print(string)
     string.each_char {|c| putc c ; sleep 0.05}
-    #string.each_char {|c| putc c ; sleep 0.05; $stdout.flush }
 end
 
 def higher(var1, var2)   #Returns whichever variable is higher

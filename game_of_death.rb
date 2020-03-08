@@ -1,5 +1,6 @@
 require "rubygems"
 require "bundler/setup"
+require "colorize"
 require_relative "classes.rb"
 require_relative "methods.rb"
 
@@ -25,14 +26,15 @@ def main
         enemy_4 = Enemy.new("Ji", 80, 5, 75, 4, "punch")
         enemy_5 = Enemy.new("Kareem", 100, 5, 85, 5)
 
+        enemies = [enemy_1, enemy_2, enemy_3, enemy_4, enemy_5]
+
         system "clear"
         slow_print(location_descriptions(0))
+        location = 1
 
-        fight(new_player, enemy_1)
-        fight(new_player, enemy_2)
-        fight(new_player, enemy_3)
-        fight(new_player, enemy_4)
-        fight(new_player, enemy_5)
+        while new_player.is_able_to_fight
+            fight(new_player, location, enemies)
+        end
 
         puts "You have defeated all 5 bosses!"
         puts "You realise that there are more important things in life than fighting."
