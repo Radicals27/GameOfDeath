@@ -1,3 +1,5 @@
+require "rubygems"
+require "bundler/setup"
 require_relative "classes.rb"
 require_relative "methods.rb"
 
@@ -23,7 +25,9 @@ def main
         enemy_4 = Enemy.new("Ji", 80, 5, 75, 4, "punch")
         enemy_5 = Enemy.new("Kareem", 100, 5, 85, 5)
 
-        puts "#{location_descriptions(0)}"
+        system "clear"
+        slow_print(location_descriptions(0))
+
 
         fight(new_player, enemy_1)
         fight(new_player, enemy_2)
@@ -31,11 +35,14 @@ def main
         fight(new_player, enemy_4)
         fight(new_player, enemy_5)
 
+        puts "You have defeated all 5 bosses!"
+        puts "You realise that there are more important things in life than fighting over women."
+        puts "You go home and have a very good sleep."
+        puts "THE END!"
+
         game_over = true
         puts "\n"
     end
 end
-
-
 
 main

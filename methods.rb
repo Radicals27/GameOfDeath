@@ -1,24 +1,28 @@
 def fight(player, opponent)
-    puts "#{location_descriptions(opponent.location)}"
+    slow_print(location_descriptions(opponent.location))
     attack_selection = false
     target_selection = false
     puts "#{player.name} is attacking #{opponent.name}..."
 
     while opponent.is_able_to_fight == true
-        puts "Make a choice:"
-        case player.get_combat_options
-        when "pk"
-            puts "(p)unch or (k)ick"
-        when "p"
-            puts "(p)unch"
-        when "k"
-            puts "(k)ick"
-        when false
-            puts "(r)oll away! (You have no usable limbs!)"
-        else
-            "invalid input..."
+        attack_selection = nil
+        
+        while attack_selection != "p" and attack_selection != "k"
+            puts "Make a choice:"
+            case player.get_combat_options
+            when "pk"
+                puts "(p)unch or (k)ick"
+            when "p"
+                puts "(p)unch"
+            when "k"
+                puts "(k)ick"
+            when false
+                puts "(r)oll away! (You have no usable limbs!)"
+            end
+            attack_selection = gets.chomp
+            p "attack selection is: #{attack_selection}"
         end
-        attack_selection = gets.chomp
+        
         if attack_selection == "p"
             damage = rand(5..10) + (higher(player.limbs["ra"][1], player.limbs["la"][1]))/10
         elsif attack_selection == "k"
@@ -63,6 +67,11 @@ def fight(player, opponent)
     end
     puts "#{opponent.name} is too damaged to continue! \n You win!"
     
+end
+
+def slow_print(string)
+    string.each_char {|c| putc c ; sleep 0.05}
+    #string.each_char {|c| putc c ; sleep 0.05; $stdout.flush }
 end
 
 def higher(var1, var2)   #Returns whichever variable is higher
