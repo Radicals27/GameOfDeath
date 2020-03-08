@@ -28,7 +28,6 @@ def main
         system "clear"
         slow_print(location_descriptions(0))
 
-
         fight(new_player, enemy_1)
         fight(new_player, enemy_2)
         fight(new_player, enemy_3)
@@ -36,7 +35,7 @@ def main
         fight(new_player, enemy_5)
 
         puts "You have defeated all 5 bosses!"
-        puts "You realise that there are more important things in life than fighting over women."
+        puts "You realise that there are more important things in life than fighting."
         puts "You go home and have a very good sleep."
         puts "THE END!"
 

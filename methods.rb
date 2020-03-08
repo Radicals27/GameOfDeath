@@ -1,12 +1,11 @@
 def fight(player, opponent)
     slow_print(location_descriptions(opponent.location))
-    attack_selection = false
-    target_selection = false
     puts "#{player.name} is attacking #{opponent.name}..."
 
-    while opponent.is_able_to_fight == true
+    while player.is_able_to_fight and opponent.is_able_to_fight
         attack_selection = nil
-        
+        target_selection = nil
+
         while attack_selection != "p" and attack_selection != "k"
             puts "Make a choice:"
             case player.get_combat_options
@@ -20,7 +19,6 @@ def fight(player, opponent)
                 puts "(r)oll away! (You have no usable limbs!)"
             end
             attack_selection = gets.chomp
-            p "attack selection is: #{attack_selection}"
         end
         
         if attack_selection == "p"
@@ -28,45 +26,54 @@ def fight(player, opponent)
         elsif attack_selection == "k"
             damage = rand(8..15) + (higher(player.limbs["rl"][1], player.limbs["ll"][1]))/10
         end
-
-        puts "damage: #{damage}"
+        system "clear"
         puts "Where would you like to target?"
         puts "(h)ead (ra)right arm (la)left arm (ll)left leg (rl)right leg (g)roin (t)orso (h)ead"
         target_selection = gets.chomp
 
         if player.attack_has_hit(attack_selection)
             opponent.take_damage(target_selection, damage)
+            system "clear"
+            puts "#{opponent.name} took #{damage} damage to the #{opponent.limbs[target_selection][0]}"
         else
             puts "you missed!"
         end
         
         #Now opponent attacks player...
-        target_selection = player.get_random_limb
+        if opponent.is_able_to_fight
+            target_selection = player.get_random_limb
 
-        if opponent.prefers_attack == "p"
-            puts "#{opponent.name} tries to punch you in your #{target_selection}"
-            attack_selection = "p"
-        elsif opponent.prefers_attack == "k"
-            puts "#{opponent.name} tries to kick you in your #{target_selection}"
-            attack_selection = "k"
-        else
-            rand(1..2) == 1 ? attack_selection = "p" : attack_selection = "k"
-            puts "#{opponent.name} tries to #{attack_selection == "p" ? "punch" : "kick"} you in your #{target_selection}"
-        end
-        
-        if opponent.attack_has_hit(attack_selection)
-            if attack_selection == "p"
-                damage = rand(5..10) + (higher(opponent.limbs["ra"][1], opponent.limbs["la"][1]))/10
-            elsif attack_selection == "k"
-                damage = rand(8..15) + (higher(opponent.limbs["rl"][1], opponent.limbs["ll"][1]))/10
+            if opponent.prefers_attack == "p"
+                puts "#{opponent.name} tries to punch you in your #{target_selection}"
+                attack_selection = "p"
+            elsif opponent.prefers_attack == "k"
+                puts "#{opponent.name} tries to kick you in your #{target_selection[0]}"
+                attack_selection = "k"
+            else
+                rand(1..2) == 1 ? attack_selection = "p" : attack_selection = "k"
+                puts "#{opponent.name} tries to #{attack_selection == "p" ? "punch" : "kick"} you in your #{target_selection[0]}"
             end
-            puts "#{opponent.name} hits you in the #{target_selection} for #{damage} damage"
+            
+            if opponent.attack_has_hit(attack_selection)
+                if attack_selection == "p"
+                    damage = rand(5..10) + (higher(opponent.limbs["ra"][1], opponent.limbs["la"][1]))/10
+                    player.take_damage(player.limbs.key(target_selection), damage)
+                elsif attack_selection == "k"
+                    damage = rand(8..15) + (higher(opponent.limbs["rl"][1], opponent.limbs["ll"][1]))/10
+                    player.take_damage(player.limbs.key(target_selection), damage)
+                end
+                puts "#{opponent.name} hits you in the #{target_selection[0]} for #{damage} damage"
+            else
+                puts "...And misses."    
+            end
         else
-            puts "...And misses."    
+            puts "#{opponent.name} is too damaged to continue!\nYou win!"
         end
     end
-    puts "#{opponent.name} is too damaged to continue! \n You win!"
-    
+    if !player.is_able_to_fight
+        puts "You are too damaged to continue!"
+        slow_print("GAME OVER!")
+    end
 end
 
 def slow_print(string)

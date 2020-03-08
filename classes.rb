@@ -26,7 +26,7 @@ class Human
     end
     def get_random_limb
         random_limb = @limbs.values.sample   #Get a random sample from the limbs hash
-        return random_limb[0].to_s
+        return random_limb
     end
     def get_combat_options
         if @limbs["ra"][1] > 0 or @limbs["la"][1] > 0
@@ -60,7 +60,6 @@ class Human
 
     def take_damage(body_part, damage)
         @limbs[body_part][1] -= damage   #does this work?
-        puts "#{@limbs[body_part][0]} took #{damage} damage."
         @is_able_to_fight = check_ability_to_fight
     end
 
