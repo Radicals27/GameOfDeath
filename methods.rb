@@ -54,14 +54,14 @@ def fight(player, location, enemies)
             target_selection = player.get_random_limb
 
             if opponent.prefers_attack == "p"
-                puts "#{opponent.name} tries to punch you in your #{target_selection}".red
+                puts "#{opponent.name} tries to punch you in your #{target_selection}"
                 attack_selection = "p"
             elsif opponent.prefers_attack == "k"
-                puts "#{opponent.name} tries to kick you in your #{target_selection[0]}".red
+                puts "#{opponent.name} tries to kick you in your #{target_selection[0]}"
                 attack_selection = "k"
             else
                 rand(1..2) == 1 ? attack_selection = "p" : attack_selection = "k"
-                puts "#{opponent.name} tries to #{attack_selection == "p" ? "punch" : "kick"} you in your #{target_selection[0]}".red
+                puts "#{opponent.name} tries to #{attack_selection == "p" ? "punch" : "kick"} you in your #{target_selection[0]}"
             end
             
             if opponent.attack_has_hit(attack_selection)
@@ -98,7 +98,8 @@ def damage_message(limb)
         "#{limb}?  What #{limb}? It is no longer recognisable!",
         "The #{limb} is beaten to a pulp",
         "#{limb}'s are not supposed to look like *that*",
-        "The #{limb} looks like a stocking full of mince.",
+        "The #{limb} looks like a sock full of mince.",
+        "The #{limb} has been knocked clean off!"
     ]
     return description.sample
 end
