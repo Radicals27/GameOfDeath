@@ -59,7 +59,7 @@ class Human
     end
 
     def take_damage(body_part, damage)
-        @limbs[body_part][1] -= damage   #does this work?
+        @limbs[body_part][1] -= damage
         @is_able_to_fight = check_ability_to_fight
     end
 

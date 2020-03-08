@@ -41,6 +41,9 @@ def fight(player, location, enemies)
             opponent.take_damage(target_selection, damage)
             system "clear"
             puts "#{opponent.name} took #{damage} damage to the #{opponent.limbs[target_selection][0]}".red
+            if opponent.limbs[target_selection][1] <= 0
+                puts damage_message(opponent.limbs[target_selection][0])
+            end
         else
             system "clear"
             puts "you missed!".yellow
@@ -86,6 +89,18 @@ end
 
 def slow_print(string)
     string.each_char {|c| putc c ; sleep 0.05}
+end
+
+def damage_message(limb)
+    description = [
+        "The #{limb} is hanging by a single piece of skin.",
+        "The #{limb} is destroyed beyond recognition.",
+        "#{limb}?  What #{limb}? It is no longer recognisable!",
+        "The #{limb} is beaten to a pulp",
+        "#{limb}'s are not supposed to look like *that*",
+        "The #{limb} looks like a stocking full of mince.",
+    ]
+    return description.sample
 end
 
 def higher(var1, var2)   #Returns whichever variable is higher
