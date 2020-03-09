@@ -33,19 +33,26 @@ def fight(player, location, enemies)
             damage = rand(8..15) + (higher(player.limbs["rl"][1], player.limbs["ll"][1]))/10
         end
         system "clear"
+        display_stats(player)
         puts "Where would you like to target?"
         puts "(h)ead (ra)right arm (la)left arm (ll)left leg (rl)right leg (g)roin (t)orso (h)ead"
         target_selection = gets.chomp
+        while !input_checker(["h", "ra", "la", "ll", "rl", "g", "t", "h"], target_selection)
+            puts "invalid, try again:"
+            target_selection = gets.chomp
+        end
 
         if player.attack_has_hit(attack_selection)
             opponent.take_damage(target_selection, damage)
             system "clear"
+            display_stats(player)
             puts "#{opponent.name} took #{damage} damage to the #{opponent.limbs[target_selection][0]}".red
             if opponent.limbs[target_selection][1] <= 0
                 puts damage_message(opponent.limbs[target_selection][0])
             end
         else
             system "clear"
+            display_stats(player)
             puts "you missed!".yellow
         end
         
@@ -102,6 +109,34 @@ def damage_message(limb)
         "The #{limb} has been knocked clean off!"
     ]
     return description.sample
+end
+
+def display_stats(person)
+    stats_to_display = [
+        person.limbs["h"], person.limbs["t"], person.limbs["g"], person.limbs["ra"], 
+        person.limbs["la"], person.limbs["ll"], person.limbs["rl"]
+    ]
+    output = ""
+
+    for stat in stats_to_display
+        if stat[1] <= 5
+             print "#{stat[0]}:"
+             print "#{stat[1]} // ".red
+        else
+            print "#{stat[0]}:#{stat[1]} // "
+        end
+    end
+    print "\n"
+    STDOUT.flush
+end
+
+def input_checker(valid_inputs, input)
+    for i in valid_inputs
+        if i == input
+            return true
+        end
+    end
+    return false
 end
 
 def higher(var1, var2)   #Returns whichever variable is higher
