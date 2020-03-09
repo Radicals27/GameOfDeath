@@ -3,8 +3,6 @@ require "bundler/setup"
 require "colorize"
 require "tty-font"
 require "pastel"
-require "gosu"
-
 require_relative "classes.rb"
 require_relative "methods.rb"
 
@@ -21,9 +19,6 @@ def location_descriptions(index)
 end
 
 def main
-    #punch_sfx = Gosu::Song.new("punch.wav")
-    #punch_sfx.play
-
     intro = true
     while intro == true
         system "clear"
