@@ -51,10 +51,12 @@ def main
             game_over = true
         end
     end
-    puts "You have defeated all 5 bosses!"
-    puts "You realise that there are more important things in life than fighting."
-    puts "You go home and have a very good sleep."
-    puts "THE END!"
+    if !enemy_5.is_able_to_fight
+        puts "You have defeated all 5 bosses!"
+        puts "You realise that there are more important things in life than fighting."
+        puts "You go home and have a very good sleep."
+        puts "THE END!"        
+    end
 
 
     puts "\n"

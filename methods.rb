@@ -126,7 +126,10 @@ def display_stats(person)
     for stat in stats_to_display
         if stat[1] <= 5
              print "#{stat[0]}:"
-             print "#{stat[1]} // ".red
+             print "#{stat[1]} // ".yellow
+        elsif stat[1] <= 0
+            print "#{stat[0]}:"
+            print "CRIPPLED // ".red
         else
             print "#{stat[0]}:#{stat[1]} // "
         end
