@@ -20,7 +20,7 @@ end
 def main
     intro = true
     while intro == true
-        syste "clear"
+        system "clear"
         font = TTY::Font.new(:doom)
         puts font.write("Game of Death!")
         slow_print("Press enter to continue...")
