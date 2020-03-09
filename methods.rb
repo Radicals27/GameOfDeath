@@ -27,6 +27,11 @@ def fight(player, location, enemies)
             attack_selection = gets.chomp
         end
         
+        while !input_checker(["p", "k"], attack_selection)
+            puts "invalid, try again:"
+            attack_selection = gets.chomp
+        end
+
         if attack_selection == "p"
             damage = rand(5..10) + (higher(player.limbs["ra"][1], player.limbs["la"][1]))/10
         elsif attack_selection == "k"

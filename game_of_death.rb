@@ -1,6 +1,7 @@
 require "rubygems"
 require "bundler/setup"
 require "colorize"
+require "tty-font"
 require_relative "classes.rb"
 require_relative "methods.rb"
 
@@ -17,6 +18,17 @@ def location_descriptions(index)
 end
 
 def main
+    intro = true
+    while intro == true
+        syste "clear"
+        font = TTY::Font.new(:doom)
+        puts font.write("Game of Death!")
+        slow_print("Press enter to continue...")
+        if gets
+            intro = false
+        end
+    end
+
     game_over = false
     while !game_over        
         new_player = Player.new("Bruce", 100, 10, 80, 1)      
