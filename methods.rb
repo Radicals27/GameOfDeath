@@ -5,7 +5,7 @@ def fight(player, location, enemies)
         end
     end
 
-    slow_print(location_descriptions(opponent.location))
+    slow_print(location_descriptions(player.location))
     puts "\n#{player.name} is attacking #{opponent.name}...".red
 
     while player.is_able_to_fight and opponent.is_able_to_fight
