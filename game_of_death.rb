@@ -41,10 +41,10 @@ def main
         end
     end
     if !enemy_5.is_able_to_fight
-        puts "You have defeated all 5 bosses!"
-        puts "You realise that there are more important things in life than fighting."
-        puts "You go home and have a very good sleep."
-        puts "THE END!"        
+        slow_print("You have defeated all 5 bosses!")
+        slow_print("You realise that there are more important things in life than fighting.")
+        slow_print("You go home and have a very good sleep.")
+        slow_print("THE END!")
     end
     puts "\n"
 end

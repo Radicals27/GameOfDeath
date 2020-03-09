@@ -15,7 +15,7 @@ def taunts
         "You fight as well as you smell!  Which is to say, bad!",
         "You suck!",
         "No pain, no gain!",
-        "Linda is ours now!",
+        "Linda is ours now! Get over it!",
         "You are a bad person!",
         "Get out! This is our pagoda!",
         "I trained for years just to kick your butt!",
