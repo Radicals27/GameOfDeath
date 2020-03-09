@@ -2,6 +2,7 @@ require "rubygems"
 require "bundler/setup"
 require "colorize"
 require "tty-font"
+require "pastel"
 require_relative "classes.rb"
 require_relative "methods.rb"
 
@@ -21,8 +22,9 @@ def main
     intro = true
     while intro == true
         system "clear"
+        pastel = Pastel.new
         font = TTY::Font.new(:doom)
-        puts font.write("Game of Death!")
+        puts pastel.yellow(font.write("Game of Death!"))
         slow_print("Press enter to continue...")
         if gets
             intro = false
