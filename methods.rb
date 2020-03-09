@@ -59,6 +59,9 @@ def fight(player, location, enemies)
             system "clear"
             display_stats(player)
             puts "you missed!".yellow
+            print "#{opponent.name}: "
+            slow_print(taunts)
+            print "\n"
         end
         
         #Now opponent attacks player...

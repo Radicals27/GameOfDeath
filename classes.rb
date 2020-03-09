@@ -51,7 +51,7 @@ class Human
                 return true   #did hit
             end
         elsif attack_type == "k"
-            if (rand(1..100)-15) < @accuracy
+            if (rand(1..100)+15) < @accuracy
                 return true   #did hit
             end
         end

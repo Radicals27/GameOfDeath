@@ -46,8 +46,6 @@ def main
         puts "You go home and have a very good sleep."
         puts "THE END!"        
     end
-
-
     puts "\n"
 end
 

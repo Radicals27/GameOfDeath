@@ -10,20 +10,20 @@ def location_descriptions(index)
     return descriptions[index]
 end
 
-def sayings
-    sayings = [
+def taunts
+    taunts = [
         "You fight as well as you smell!  Which is to say, bad!",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
+        "You suck!",
+        "No pain, no gain!",
+        "Linda is ours now!",
+        "You are a bad person!",
+        "Get out! This is our pagoda!",
+        "I trained for years just to kick your butt!",
+        "If you were a better boyfriend, you wouldn't be in this situation!",
+        "You look like a weakling! Oh! It's because you are!",
+        "Hahahah you missed!",
+        "Missed me again!",
+        "You can't even hit me!",
     ]
-    return sayings.sample(1)
+    return taunts[rand(0..taunts.length())]
 end
