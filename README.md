@@ -22,6 +22,25 @@ From the start of the game, the user will be prompted with their options via key
 When the user is prompted, they simply need to press one of the prompted keys then press enter.  This choice then goes into the game and the consequences are displayed.
 Any errors that are encountered, such as invalid user input, will prompt the user to enter a valid input, until they do.
 
+## Gameplay loop
+
+ADD UML HERE!!!!!!!!
+
+## Implementation Plan
+
+- outlines how each feature will be implemented and a checklist of tasks for each feature
+- prioritise the implementation of different features, or checklist items within a feature
+- provide a deadline, duration or other time indicator for each feature or checklist/checklist-item
+
+ADD TRELLO HERE!!!!!!
+
+## Help
+
+ADD HELP DOCUMENTATION HERE!!!!
+ - steps to install the application
+- any dependencies required by the application to operate
+- any system/hardware requirements
+
 ```ruby
 class Human
     def initialize(toughness, health)

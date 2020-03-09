@@ -75,28 +75,18 @@ class Human
     def is_able_to_fight
         return @is_able_to_fight
     end
-
-    def health
-        return @health
-    end
-    def strength
-        return @strength
-    end
-    def toughness
-        return @toughness
-    end
-    def location
-        return @location
-    end
 end
 
 class Player < Human    
 end
 
 class Enemy < Human
+    attr_reader :weakness, :prefers_attack
+
     def initialize(name, health, strength, accuracy, location=false, prefers_attack=false)
         super
         @prefers_attack = prefers_attack
+        @weakness = self.get_random_limb
     end
     def attack_player
         if @prefers_attack == false
@@ -104,7 +94,7 @@ class Enemy < Human
         end
         puts "#{@name} attacks you..."
     end
-    def prefers_attack
-        return @prefers_attack
-    end
+    # def prefers_attack
+    #     return @prefers_attack
+    # end
 end

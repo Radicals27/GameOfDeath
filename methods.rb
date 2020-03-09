@@ -127,7 +127,7 @@ def display_stats(person)
     output = ""
 
     for stat in stats_to_display
-        if stat[1] <= 5
+        if stat[1] <= 10
              print "#{stat[0]}:"
              print "#{stat[1]} // ".yellow
         elsif stat[1] <= 0
