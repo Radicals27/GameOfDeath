@@ -6,7 +6,7 @@ def location_descriptions(index)
         "You catch your breath and head upstairs.  It's a dark room with a single chair, where another angry man is sitting.  He gets up and screams as he lunges at you!",
         "Exhausted, you continue upstairs.  Into an even darker room with an even angrier, louder man, get ready!",
         "You crawl upstairs.  There is no one here and you are safe.  Just kidding, you are being attacked!",
-        "You have reached the top floor! Your girlfriend is making out with Kareem, the mafia boss.  He attacks you!",
+        "You have reached the top floor! Your girlfriend is playing Monopoly with Kareem, the mafia boss.  He attacks you!",
     ]
     return descriptions[index]
 end
@@ -34,11 +34,11 @@ end
 #Things enemies will say when you hit them
 def speak(index, struck_limb, weak_limb)
     dialogues = [
-        ["OW!", "Ow! My #{struck_limb}!", "Don't hit my #{weak_limb}, please!"],
-        ["Oof!", "Why'd you have to hit my #{struck_limb}??", "Whatever you do don't hit my #{weak_limb}!"],
+        ["OW!", "Ow! My #{struck_limb}!", "Don't hit my #{weak_limb}, please!", "I hope you don't hit my weak #{weak_limb}!!"],
+        ["Oof!", "I'm removing you from Facebook...", "Why'd you have to hit my #{struck_limb}??", "Whatever you do don't hit my #{weak_limb}!"],
         ["Oh my God that smarts!", "If I put on my glasses would you stop hitting me?", "I'm a bleeder!"],
-        ["*cries*", "What did my #{struck_limb} ever do to you?", "My God you're strong! I see why your girlfriend likes you."],
-        ["OW! Why didn't I become a programmer?", "I won't let my family down!", "I don't need my #{struck_limb} anyway!"],
+        ["*cries*", "What did my #{struck_limb} ever do to you?", "My God you're strong! I see why your girlfriend likes you.", "I think we went to the same school!"],
+        ["OW! I should've become a programmer...", "I won't let my family down!", "I was about to pass GO, too!", "I feel lighter without my #{struck_limb}","I don't need my #{struck_limb} anyway!"],
     ]
     return dialogues[index][rand(0..dialogues[index].length-1)]
 end
