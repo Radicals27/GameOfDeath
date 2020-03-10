@@ -25,13 +25,13 @@ def fight(player, location, enemies)
                 puts "(r)oll away! (You have no usable limbs!)"
             end
             attack_selection = gets.chomp
+            begin
+                raise NameError, "Invalid key" if attack_selection != "p" or "k"
+            rescue NameError => e
+                puts "ERROR: #{e}"
+            end
         end
         
-        while !input_checker(["p", "k"], attack_selection)
-            puts "invalid, try again:"
-            attack_selection = gets.chomp
-        end
-
         if attack_selection == "p"
             damage = rand(5..10) + (higher(player.limbs["ra"][1], player.limbs["la"][1]))/10
         elsif attack_selection == "k"
@@ -41,12 +41,17 @@ def fight(player, location, enemies)
         display_stats(player)
         puts "Where would you like to target?"
         puts "(h)ead (ra)right arm (la)left arm (ll)left leg (rl)right leg (g)roin (t)orso (h)ead"
-        target_selection = gets.chomp
-        while !input_checker(["h", "ra", "la", "ll", "rl", "g", "t", "h"], target_selection)
-            puts "invalid, try again:"
-            target_selection = gets.chomp
-        end
 
+        while !["h", "g", "t", "ra", "la", "rl", "ll"].include?(target_selection)
+            target_selection = gets.chomp
+            begin
+                raise NameError, "Invalid key" if !["h", "g", "t", "ra", "la", "rl", "ll"].include?(target_selection)
+            rescue NameError => e
+                puts "ERROR: #{e}"
+            end
+        end
+            
+    
         if player.attack_has_hit(attack_selection)
             opponent.take_damage(target_selection, damage)
             system "clear"
@@ -134,15 +139,6 @@ def display_stats(person)
     end
     print "\n"
     STDOUT.flush
-end
-
-def input_checker(valid_inputs, input)
-    for i in valid_inputs
-        if i == input
-            return true
-        end
-    end
-    return false
 end
 
 def higher(var1, var2)   #Returns whichever variable is higher
