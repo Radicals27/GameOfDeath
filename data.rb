@@ -1,3 +1,4 @@
+#Descriptions of the beginning plus each of the 5 locations
 def location_descriptions(index)
     descriptions = [
         "Your girlfriend, Linda, has been kidnapped! The local mafia are keeping her in the top level of the mysterious pagoda on the outskirts of town...",
@@ -10,6 +11,7 @@ def location_descriptions(index)
     return descriptions[index]
 end
 
+#Enemy taunts, said when you miss
 def taunts
     taunts = [
         "You fight as well as you smell!  Which is to say, bad!",
@@ -26,9 +28,10 @@ def taunts
         "Missed me again!",
         "You can't even hit me!",
     ]
-    return taunts[rand(0..taunts.length())]
+    return taunts[rand(0..taunts.length()-1)]
 end
 
+#Things enemies will say when you hit them
 def speak(index, struck_limb, weak_limb)
     dialogues = [
         ["OW!", "Ow! My #{struck_limb}!", "Don't hit my #{weak_limb}, please!"],
@@ -40,6 +43,7 @@ def speak(index, struck_limb, weak_limb)
     return dialogues[index][rand(0..dialogues[index].length-1)]
 end
 
+#Message player will receive when he cripples an enemies limb
 def damage_message(limb)
     description = [
         "The #{limb} is hanging by a single piece of skin.",

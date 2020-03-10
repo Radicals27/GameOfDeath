@@ -12,9 +12,9 @@ It is targeted towards people aged 15 and up who enjoy computer games, as it doe
 To use it, a player simply runs the game_of_death.rb file and follows the prompts.  A typical game lasts about 5 minutes, but can be completed as quickly as 1 minute if so desired.
 
 ## Features
-* An engaging and comical narrative with some randomised elements that encourage repeat playthroughs in order to discover them all
+* Text-based interactive combat system
 * A comprehensive damage system allowing players and enemies to target specific body parts with unique consequences (having 2 damaged arms means you can no longer punch, for example)
-* Unique battles with unique characters.  Each enemy has their own personality and quotes/taunts as well as weaknesses and strengths for the player to discover and exploit.
+* Unique battles with unique characters; Each enemy has their own personality and quotes/taunts as well as weaknesses and strengths for the player to discover and exploit.
 
 ## Outline
 

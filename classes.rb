@@ -1,13 +1,15 @@
 class Human
     attr_accessor :name, :health, :strength, :toughness, :location,  :limbs, :is_able_to_fight
+
     def initialize(name, health, strength, accuracy, location=false, prefers_attack=false)
         @name = name
         @health = health
-        @strength = strength
-        @accuracy = accuracy
-        @location = location
+        @strength = strength   #Used for calculating damage in combat
+        @accuracy = accuracy   #Used for calculating chance to hit an opponent
+        @location = location   #The physical location they are in (rooms 1-5)
         @is_able_to_fight = true   #changes to false if certain limbs get too damaged
 
+        #Holds the person's limbs with a verbose descriptor and health
         @limbs = {
             "la" => ["left arm", 25],
             "ra" => ["right arm", 25],
@@ -18,13 +20,12 @@ class Human
             "t" => ["torso", 50]
         }
     end
-    def limb_damage(limb, damage)
-        @limbs[limb][1] -= damage
-    end
+    #Returns a random limb, used for generating a weak initial limb or a random target limb
     def get_random_limb
         random_limb = @limbs.values.sample   #Get a random sample from the limbs hash
         return random_limb
     end
+    #If the player's arms are crippled, they can only kick, and vice-a-versa
     def get_combat_options
         if @limbs["ra"][1] > 0 or @limbs["la"][1] > 0
             if @limbs["ll"][1] > 0 or @limbs["rl"][1] > 0
@@ -38,6 +39,7 @@ class Human
             return false   #no limbs!
         end
     end
+    #Calculates if an attack has landed
     def attack_has_hit(attack_type)
         if attack_type == "p"
             if rand(1..100) < @accuracy
@@ -50,16 +52,16 @@ class Human
         end
         return false   #did not hit
     end
-
+    #Manages damage from an attack
     def take_damage(body_part, damage)
-        if body_part == @limbs.key(@weakness)
+        if body_part == @limbs.key(@weakness)   #If the attack hits their weakness it does 1.5x damage
             @limbs[body_part][1] -= damage*1.5
         else
             @limbs[body_part][1] -= damage
         end
-        @is_able_to_fight = check_ability_to_fight
+        @is_able_to_fight = check_ability_to_fight   #Check if this attack removes their ability to fight
     end
-
+    #If both arms and legs are crippled, they can't fight. Same for torso, head and/or groin
     def check_ability_to_fight
         if @limbs["h"][1] <= 0 or @limbs["t"][1] <= 0 or @limbs["g"][1] <= 0
             return false   #head, torso or groin are destroyed
@@ -74,13 +76,14 @@ class Human
     end
 end
 
+#Enemies can (and do) have a weakness and sometimes have a preferred attack
 class Enemy < Human
     attr_reader :weakness, :prefers_attack
 
     def initialize(name, health, strength, accuracy, location=false, prefers_attack=false)
         super
         @prefers_attack = prefers_attack
-        @weakness = self.get_random_limb
+        @weakness = self.get_random_limb    #Set a random limb to be a weak limb (if crippled, will remove them from combat)
     end
     def attack_player
         if @prefers_attack == false
@@ -88,7 +91,7 @@ class Enemy < Human
         end
         puts "#{@name} attacks you..."
     end
-    def talk(struck_limb)
+    def talk(struck_limb)   #When player hits the enemy, talk() is called
         return "#{@name}: #{speak(@location-1, struck_limb, @weakness[0])}"
     end
 end

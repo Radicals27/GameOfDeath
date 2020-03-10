@@ -9,12 +9,16 @@ require_relative "data.rb"
 
 def main    
     system "clear"
+
+    #Present welcome screen
     pastel = Pastel.new
     font = TTY::Font.new(:doom)
     puts pastel.yellow(font.write("Game of Death!"))
     pause("Press enter to continue...")
 
     system "clear"
+
+    #Setup initial objects
     game_over = false
     new_player = Human.new("Bruce", 100, 10, 80, 1)      
     enemy_1 = Enemy.new("Hwang", 40, 5, 60, 1, "kick")
@@ -30,17 +34,23 @@ def main
     while !game_over        
         fight(new_player, location, enemies)
         location += 1
-        if !enemy_5.is_able_to_fight or !new_player.is_able_to_fight
+        #If the last boss or the player are not able to fight, then it's game over
+        if !new_player.is_able_to_fight
             game_over = true
+            puts "You are too damaged to continue!".red
+            slow_print("GAME OVER!", 0.5)
+        elsif !enemy_5.is_able_to_fight
+            game_over = true
+            slow_print("You have defeated all 5 bosses!", 0.05)
+            slow_print("You realise that there are more important things in life than fighting.", 0.05)
+            slow_print("You go home and have a very good sleep.", 0.05)
+            slow_print("THE END!", 0.5)
         end
     end
-    if !enemy_5.is_able_to_fight
-        slow_print("You have defeated all 5 bosses!", 0.05)
-        slow_print("You realise that there are more important things in life than fighting.", 0.05)
-        slow_print("You go home and have a very good sleep.", 0.05)
-        slow_print("THE END!", 0.5)
-    end
+    #But if only the final boss can't fight, then the player has won
+    
     puts "\n"
 end
 
+#Start the game by calling main()
 main
