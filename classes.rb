@@ -67,7 +67,7 @@ class Human
             return false   #head, torso or groin are destroyed
         elsif @limbs["ra"][1] <= 0 and @limbs["la"][1] <= 0 and @limbs["rl"][1] <= 0 and @limbs["ll"][1] <= 0 
             return false   #all 4 limbs are destroyed
-        elsif self.class == "Enemy"
+        elsif self.class.to_s == "Enemy"
             if @weakness[1] <= 0
                 return false
             end

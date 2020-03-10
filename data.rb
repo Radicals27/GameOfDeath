@@ -8,7 +8,7 @@ def location_descriptions(index)
     #     "You have reached the top floor! Your girlfriend is making out with Kareem, the mafia boss.  He attacks you!",
     # ]
     descriptions = [
-        "", "", "" , "", "", ""
+        "blah", "bleee", "bloo" , "feeee", "fooooo", "barrrr"
     ]
     return descriptions[index]
 end

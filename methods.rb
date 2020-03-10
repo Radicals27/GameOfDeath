@@ -51,7 +51,8 @@ def fight(player, location, enemies)
             opponent.take_damage(target_selection, damage)
             system "clear"
             display_stats(player)
-            puts "#{opponent.name} took #{damage} damage to the #{opponent.limbs[target_selection][0]}".red
+            puts "#{opponent.name} was hit in the #{opponent.limbs[target_selection][0]}".red
+
             if opponent.limbs[target_selection][1] <= 0
                 puts damage_message(opponent.limbs[target_selection][0])
             end
