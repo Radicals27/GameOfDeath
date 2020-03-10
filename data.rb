@@ -1,14 +1,11 @@
 def location_descriptions(index)
-    # descriptions = [
-    #     "Your girlfriend, Linda, has been kidnapped! The local mafia are keeping her in the top level of the mysterious pagoda on the outskirts of town...",
-    #     "You step inside, the room is a dojo of some sort, there is a man meditating.  He hears you enter and approaches you with anger in his eyes, get ready!",
-    #     "You catch your breath and head upstairs.  It's a dark room with a single chair, where another angry man is sitting.  He gets up and screams as he lunges at you!",
-    #     "Exhausted, you continue upstairs.  Into an even darker room with an even angrier, louder man, get ready!",
-    #     "You crawl upstairs.  There is no one here and you are safe.  Just kidding, you are being attacked!",
-    #     "You have reached the top floor! Your girlfriend is making out with Kareem, the mafia boss.  He attacks you!",
-    # ]
     descriptions = [
-        "blah", "bleee", "bloo" , "feeee", "fooooo", "barrrr"
+        "Your girlfriend, Linda, has been kidnapped! The local mafia are keeping her in the top level of the mysterious pagoda on the outskirts of town...",
+        "You step inside, the room is a dojo of some sort, there is a man meditating.  He hears you enter and approaches you with anger in his eyes, get ready!",
+        "You catch your breath and head upstairs.  It's a dark room with a single chair, where another angry man is sitting.  He gets up and screams as he lunges at you!",
+        "Exhausted, you continue upstairs.  Into an even darker room with an even angrier, louder man, get ready!",
+        "You crawl upstairs.  There is no one here and you are safe.  Just kidding, you are being attacked!",
+        "You have reached the top floor! Your girlfriend is making out with Kareem, the mafia boss.  He attacks you!",
     ]
     return descriptions[index]
 end
@@ -21,6 +18,7 @@ def taunts
         "Linda is ours now! Get over it!",
         "You are a bad person!",
         "Get out! This is our pagoda!",
+        "You're from that place I don't like!",
         "I trained for years just to kick your butt!",
         "If you were a better boyfriend, you wouldn't be in this situation!",
         "You look like a weakling! Oh! It's because you are!",
@@ -40,4 +38,17 @@ def speak(index, struck_limb, weak_limb)
         ["OW! Why didn't I become a programmer?", "I won't let my family down!", "I don't need my #{struck_limb} anyway!"],
     ]
     return dialogues[index][rand(0..dialogues[index].length-1)]
+end
+
+def damage_message(limb)
+    description = [
+        "The #{limb} is hanging by a single piece of skin.",
+        "The #{limb} is destroyed beyond recognition.",
+        "#{limb}?  What #{limb}? It is no longer recognisable!",
+        "The #{limb} is beaten to a pulp",
+        "#{limb}'s are not supposed to look like *that*",
+        "The #{limb} looks like a sock full of mince.",
+        "The #{limb} has been knocked clean off!"
+    ]
+    return description.sample
 end

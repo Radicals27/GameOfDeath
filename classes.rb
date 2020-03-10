@@ -41,21 +41,19 @@ class Human
     def attack_has_hit(attack_type)
         if attack_type == "p"
             if rand(1..100) < @accuracy
-                return true   #did hit
+                return true   #punch did hit
             end
         elsif attack_type == "k"
             if (rand(1..100)+15) < @accuracy
-                return true   #did hit
+                return true   #kick did hit
             end
         end
-        return false
+        return false   #did not hit
     end
 
     def take_damage(body_part, damage)
         if body_part == @limbs.key(@weakness)
             @limbs[body_part][1] -= damage*1.5
-            #puts "target_selection: #{target_selection}"
-            #puts "opponent @weakness: #{opponent.limbs.key(opponent.weakness)}"
         else
             @limbs[body_part][1] -= damage
         end
@@ -74,9 +72,6 @@ class Human
         end
         return true
     end
-end
-
-class Player < Human    
 end
 
 class Enemy < Human

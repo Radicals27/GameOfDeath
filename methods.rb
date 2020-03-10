@@ -5,7 +5,7 @@ def fight(player, location, enemies)
         end
     end
 
-    slow_print(location_descriptions(player.location))
+    slow_print(location_descriptions(player.location), 0.05)
     puts "\n#{player.name} is attacking #{opponent.name}...".red
 
     while player.is_able_to_fight and opponent.is_able_to_fight
@@ -57,14 +57,14 @@ def fight(player, location, enemies)
                 puts damage_message(opponent.limbs[target_selection][0])
             end
             text_to_print = opponent.talk(opponent.limbs[target_selection][0])
-            slow_print(text_to_print)
+            slow_print(text_to_print, 0.05)
 
         else
             system "clear"
             display_stats(player)
             puts "you missed!".yellow
             print "#{opponent.name}: "
-            slow_print(taunts)
+            slow_print(taunts, 0.05)
             print "\n"
         end
         
@@ -91,37 +91,25 @@ def fight(player, location, enemies)
                     damage = rand(8..15) + (higher(opponent.limbs["rl"][1], opponent.limbs["ll"][1]))/10
                     player.take_damage(player.limbs.key(target_selection), damage)
                 end
-                puts "#{opponent.name} hits you in the #{target_selection[0]} for #{damage} damage".red
+                puts "#{opponent.name} hits you in the #{target_selection[0]}!".red
             else
                 puts "...And misses.".yellow
             end
         else
             puts "#{opponent.name} is too damaged to continue!\nYou win!".green
+            pause("Press enter to continue...")
             player.location += 1
         end
     end
     if !player.is_able_to_fight
         puts "You are too damaged to continue!".red
-        slow_print("GAME OVER!")
+        slow_print("GAME OVER!", 0.5)
     end
 end
 
-def slow_print(string)
-    string.each_char {|c| putc c ; sleep 0.05}
+def slow_print(string, speed)
+    string.each_char {|c| putc c ; sleep speed}
     puts "\n"
-end
-
-def damage_message(limb)
-    description = [
-        "The #{limb} is hanging by a single piece of skin.",
-        "The #{limb} is destroyed beyond recognition.",
-        "#{limb}?  What #{limb}? It is no longer recognisable!",
-        "The #{limb} is beaten to a pulp",
-        "#{limb}'s are not supposed to look like *that*",
-        "The #{limb} looks like a sock full of mince.",
-        "The #{limb} has been knocked clean off!"
-    ]
-    return description.sample
 end
 
 def display_stats(person)
@@ -134,10 +122,12 @@ def display_stats(person)
     for stat in stats_to_display
         if stat[1] <= 10
              print "#{stat[0]}:"
-             print "#{stat[1]} // ".yellow
+             print "#{stat[1]} ".yellow
+             print "// "
         elsif stat[1] <= 0
             print "#{stat[0]}:"
-            print "CRIPPLED // ".red
+            print "CRIPPLED ".red
+            print "// "
         else
             print "#{stat[0]}:#{stat[1]} // "
         end
@@ -161,4 +151,15 @@ def higher(var1, var2)   #Returns whichever variable is higher
     else
         return var2
     end
+end
+
+def pause(message)
+    puts message
+    pausing = true
+    while pausing == true
+        if gets
+            pausing = false
+        end
+    end
+    system "clear"
 end
