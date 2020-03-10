@@ -1,3 +1,11 @@
+# Desired features: 
+#Updates player stats bar upon game over so player can see final damaged limb/s
+#Doesn't repeat opponent sayings/taunts
+#Display players status bar at ALL times
+#Display enemy status bar as well
+#Allow crippling of limbs, but HEALTH is determining factor of ability to continue (currently not used)
+#Add secret (cheat) attack - (g)un?
+
 require "rubygems"
 require "bundler/setup"
 require "colorize"
@@ -20,12 +28,12 @@ def main
 
     #Setup initial objects
     game_over = false
-    new_player = Human.new("Bruce", 100, 10, 80, 1)      
-    enemy_1 = Enemy.new("Hwang", 40, 5, 60, 1, "kick")
-    enemy_2 = Enemy.new("Taky", 50, 5, 65, 2, "punch")
-    enemy_3 = Enemy.new("Dan", 60, 5, 70, 3)
-    enemy_4 = Enemy.new("Ji", 80, 5, 75, 4, "punch")
-    enemy_5 = Enemy.new("Kareem", 100, 5, 85, 5)
+    new_player = Human.new("Bruce", 100, 80, 1)      
+    enemy_1 = Enemy.new("Hwang", 40, 60, 1, "kick")
+    enemy_2 = Enemy.new("Taky", 50, 65, 2, "punch")
+    enemy_3 = Enemy.new("Dan", 60, 70, 3)
+    enemy_4 = Enemy.new("Ji", 80, 75, 4, "punch")
+    enemy_5 = Enemy.new("Kareem", 100, 85, 5)
     enemies = [enemy_1, enemy_2, enemy_3, enemy_4, enemy_5]
 
     slow_print(location_descriptions(0), 0.05)
@@ -43,7 +51,7 @@ def main
             game_over = true
             slow_print("You have defeated all 5 bosses!", 0.05)
             slow_print("You realise that there are more important things in life than fighting.", 0.05)
-            slow_print("You go home and have a very good sleep.", 0.05)
+            slow_print("You go home with Linda and live happily ever after...", 0.05)
             slow_print("THE END!", 0.5)
         end
     end

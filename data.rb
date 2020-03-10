@@ -34,9 +34,9 @@ end
 #Things enemies will say when you hit them
 def speak(index, struck_limb, weak_limb)
     dialogues = [
-        ["OW!", "Ow! My #{struck_limb}!", "Don't hit my #{weak_limb}, please!", "I hope you don't hit my weak #{weak_limb}!!"],
+        ["OW!", "Ow! My #{struck_limb}!", "I love my #{weak_limb}...", "Don't hit my weak #{weak_limb}!!"],
         ["Oof!", "I'm removing you from Facebook...", "Why'd you have to hit my #{struck_limb}??", "Whatever you do don't hit my #{weak_limb}!"],
-        ["Oh my God that smarts!", "If I put on my glasses would you stop hitting me?", "I'm a bleeder!"],
+        ["Oh my God that smarts!", "Owie owie owie!!", "If I put on my glasses would you stop hitting me?", "I'm a bleeder!"],
         ["*cries*", "What did my #{struck_limb} ever do to you?", "My God you're strong! I see why your girlfriend likes you.", "I think we went to the same school!"],
         ["OW! I should've become a programmer...", "I won't let my family down!", "I was about to pass GO, too!", "I feel lighter without my #{struck_limb}","I don't need my #{struck_limb} anyway!"],
     ]

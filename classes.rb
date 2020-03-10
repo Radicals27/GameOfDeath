@@ -1,10 +1,9 @@
 class Human
-    attr_accessor :name, :health, :strength, :toughness, :location,  :limbs, :is_able_to_fight
+    attr_accessor :name, :health, :accuracy, :location,  :limbs, :is_able_to_fight
 
-    def initialize(name, health, strength, accuracy, location=false, prefers_attack=false)
+    def initialize(name, health, accuracy, location=false, prefers_attack=false)
         @name = name
         @health = health
-        @strength = strength   #Used for calculating damage in combat
         @accuracy = accuracy   #Used for calculating chance to hit an opponent
         @location = location   #The physical location they are in (rooms 1-5)
         @is_able_to_fight = true   #changes to false if certain limbs get too damaged
@@ -80,7 +79,7 @@ end
 class Enemy < Human
     attr_reader :weakness, :prefers_attack
 
-    def initialize(name, health, strength, accuracy, location=false, prefers_attack=false)
+    def initialize(name, health, accuracy, location=false, prefers_attack=false)
         super
         @prefers_attack = prefers_attack
         @weakness = self.get_random_limb    #Set a random limb to be a weak limb (if crippled, will remove them from combat)

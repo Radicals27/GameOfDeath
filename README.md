@@ -3,13 +3,14 @@
 ## Repository:
 https://github.com/Radicals27/game_of_death
 
-## Statement of Purpose
-'Game of Death' is a text-based adventure/combat game made in Ruby, based on the Bruce Lee movie by the same name.  It is designed to take user inputs and allow the player to engage in text-based combat with various enemies with colorful personalities who will engage with the player.
+## Purpose & Scope
+'Game of Death' is a text-based adventure/combat game made in Ruby, based on the Bruce Lee movie by the same name.  It is designed to be an interactive story which allows the player to engage in text-based combat with various enemies.  Each enemy has a colorful personality who will engage with the player.
 The aim of the game will be to reach the 5th and final level and defeat the last opponent there.
 There will be no guarantee that the player will make it that far as the enemies are challenging in their own ways.
 This game aims to solve the problem of making a text-based game that is engaging, captivating and fun for a wide range of players.
 It is targeted towards people aged 15 and up who enjoy computer games, as it does contain some violence and adult themes.
 To use it, a player simply runs the game_of_death.rb file and follows the prompts.  A typical game lasts about 5 minutes, but can be completed as quickly as 1 minute if so desired.
+This project was completed as Assignment 1 for the Fast-track program at Coder Academy in March 2020.  During development, the developer aimed to use DRY (Don't repeat yourself) principles while coding, and to create sufficient documentation both inside the code (comments), within the program (prompts), and alongside it (Readme.md).
 
 ## Features
 * Text-based interactive combat system
