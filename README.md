@@ -47,6 +47,13 @@ class Human
     end
 end
 ```
+# !! DONT FORGET TO PACKAGE IT (R19 criteria) into a .SH script!
+
+#Final deliverable:
+/docs/<documentation>, readme.md, help file, etc ALL LINKS TO ONLINE MATERIAL MUST HAVE SCREENSHOTS!!>
+/ppt/<presentation>
+/src/<source code, does not need to include .git/ folder>
+
 
 ### As you can see from the above code, it will be a fun game.
 ---

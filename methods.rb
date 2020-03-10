@@ -55,6 +55,9 @@ def fight(player, location, enemies)
             if opponent.limbs[target_selection][1] <= 0
                 puts damage_message(opponent.limbs[target_selection][0])
             end
+            text_to_print = opponent.talk(opponent.limbs[target_selection][0])
+            slow_print(text_to_print)
+
         else
             system "clear"
             display_stats(player)
@@ -104,6 +107,7 @@ end
 
 def slow_print(string)
     string.each_char {|c| putc c ; sleep 0.05}
+    puts "\n"
 end
 
 def damage_message(limb)

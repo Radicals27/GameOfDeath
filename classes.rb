@@ -1,5 +1,5 @@
 class Human
-    attr_accessor :health, :strength, :toughness, :location
+    attr_accessor :name, :health, :strength, :toughness, :location,  :limbs, :is_able_to_fight
     def initialize(name, health, strength, accuracy, location=false, prefers_attack=false)
         @name = name
         @health = health
@@ -17,9 +17,6 @@ class Human
             "g" => ["groin", 15],
             "t" => ["torso", 50]
         }
-    end
-    def limbs
-        return @limbs
     end
     def limb_damage(limb, damage)
         @limbs[limb][1] -= damage
@@ -41,10 +38,6 @@ class Human
             return false   #no limbs!
         end
     end
-    def name
-        return @name
-    end
-
     def attack_has_hit(attack_type)
         if attack_type == "p"
             if rand(1..100) < @accuracy
@@ -59,7 +52,13 @@ class Human
     end
 
     def take_damage(body_part, damage)
-        @limbs[body_part][1] -= damage
+        if body_part == @limbs.key(@weakness)
+            @limbs[body_part][1] -= damage*1.5
+            #puts "target_selection: #{target_selection}"
+            #puts "opponent @weakness: #{opponent.limbs.key(opponent.weakness)}"
+        else
+            @limbs[body_part][1] -= damage
+        end
         @is_able_to_fight = check_ability_to_fight
     end
 
@@ -68,12 +67,12 @@ class Human
             return false   #head, torso or groin are destroyed
         elsif @limbs["ra"][1] <= 0 and @limbs["la"][1] <= 0 and @limbs["rl"][1] <= 0 and @limbs["ll"][1] <= 0 
             return false   #all 4 limbs are destroyed
+        elsif self.class == "Enemy"
+            if @weakness[1] <= 0
+                return false
+            end
         end
         return true
-    end
-
-    def is_able_to_fight
-        return @is_able_to_fight
     end
 end
 
@@ -94,7 +93,7 @@ class Enemy < Human
         end
         puts "#{@name} attacks you..."
     end
-    # def prefers_attack
-    #     return @prefers_attack
-    # end
+    def talk(struck_limb)
+        return "#{@name}: #{speak(@location-1, struck_limb, @weakness[0])}"
+    end
 end
