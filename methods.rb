@@ -12,7 +12,7 @@ def fight(player, location, enemies)
         attack_selection = nil
         target_selection = nil
 
-        while attack_selection != "p" and attack_selection != "k"
+        while !["p", "k"].include?(attack_selection)
             puts "Make a choice:"
             case player.get_combat_options
             when "pk"
@@ -21,12 +21,10 @@ def fight(player, location, enemies)
                 puts "(p)unch"
             when "k"
                 puts "(k)ick"
-            when false
-                puts "(r)oll away! (You have no usable limbs!)"
             end
             attack_selection = gets.chomp
             begin
-                raise NameError, "Invalid key" if attack_selection != "p" or "k"
+                raise NameError, "Invalid key" if !["p", "k"].include?(attack_selection)
             rescue NameError => e
                 puts "ERROR: #{e}"
             end
