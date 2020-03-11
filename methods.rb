@@ -124,8 +124,10 @@ end
 
 #Prints a given string one char at a time, at a given speed
 def slow_print(string, speed)
+    STDIN.echo = false
     string.each_char {|c| putc c ; sleep speed}
     puts "\n"
+    STDIN.echo = true
 end
 
 #Displays the player's health of each limb at top of terminal
@@ -136,6 +138,8 @@ def display_stats(person)
     ]
     output = ""
     print "#{person.name}: Health: #{person.health} // "
+
+    #Displays the health stats at the top of the screen
     for stat in stats_to_display
         if stat[1] <= 10 and stat[1] > 0
              print "#{stat[0]}:"

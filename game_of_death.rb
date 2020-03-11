@@ -3,6 +3,7 @@ require "bundler/setup"
 require "colorize"
 require "tty-font"
 require "pastel"
+require "io/console"
 require_relative "classes.rb"
 require_relative "methods.rb"
 require_relative "data.rb"
@@ -30,11 +31,9 @@ def main
     enemies = [enemy_1, enemy_2, enemy_3, enemy_4, enemy_5]
 
     slow_print(location_descriptions(0), 0.05)
-    location = 1
 
     while !game_over        
-        fight(new_player, location, enemies)
-        location += 1
+        fight(new_player, new_player.location, enemies)
         #If the player is not able to fight, then it's game over
         if !new_player.is_able_to_fight
             game_over = true
