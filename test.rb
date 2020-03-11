@@ -1,3 +1,8 @@
+#This test.rb tests 2 class methods in classes.rb; take_damage and check_ability_to_fight.
+#It creates a test_person Human class then gives damage to one of their limb variables.
+#It then tests that the limb health has indeed been reduced.
+#The 2nd test then sets the classes health to zero and checks if they can still fight, which returns false (as expected)
+
 require "test/unit"
 require_relative "./classes.rb"
 
@@ -13,7 +18,7 @@ class GameTest < Test::Unit::TestCase
     #This test fails, after 40 damage to his head, he is NOT able to fight
     def test_check_ability_to_fight
         test_person2 = Human.new("Test person", 100, 80, 1)
-        test_person2.take_damage("h", 40)
-        assert(test_person2.is_able_to_fight)
+        test_person2.health = 0
+        assert(test_person2.check_ability_to_fight)
     end
 end

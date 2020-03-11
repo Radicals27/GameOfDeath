@@ -1,9 +1,6 @@
 # Desired features: 
 #Updates player stats bar upon game over so player can see final damaged limb/s
 #Doesn't repeat opponent sayings/taunts
-#Display players status bar at ALL times
-#Display enemy status bar as well
-#Allow crippling of limbs, but HEALTH is determining factor of ability to continue (currently not used)
 #Add secret (cheat) attack - (g)un?
 
 require "rubygems"
