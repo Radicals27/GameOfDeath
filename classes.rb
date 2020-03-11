@@ -73,7 +73,7 @@ class Human
         end
         @is_able_to_fight = check_ability_to_fight   #Check if this attack removes their ability to fight
     end
-    #If both arms and legs are crippled, they can't fight. Same for torso, head and/or groin
+    #If both arms and legs are crippled, they can't fight. Same for their weakness limb
     def check_ability_to_fight
         if @limbs["ra"][1] <= 0 and @limbs["la"][1] <= 0 and @limbs["rl"][1] <= 0 and @limbs["ll"][1] <= 0 
             return false   #all 4 limbs are destroyed

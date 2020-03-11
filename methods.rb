@@ -1,4 +1,4 @@
-#Tha main fighting method, needs a player object, an enemies array and their location
+#The main fighting method, needs a player object, an enemies array and their location
 def fight(player, location, enemies)
     for e in enemies
         if e.location == player.location
