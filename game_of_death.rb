@@ -28,6 +28,7 @@ def main
 
     #Setup initial objects
     game_over = false
+    
     new_player = Human.new("Bruce", 100, 80, 1)      
     enemy_1 = Enemy.new("Hwang", 40, 60, 1, "kick")
     enemy_2 = Enemy.new("Taky", 50, 65, 2, "punch")
@@ -42,11 +43,12 @@ def main
     while !game_over        
         fight(new_player, location, enemies)
         location += 1
-        #If the last boss or the player are not able to fight, then it's game over
+        #If the player is not able to fight, then it's game over
         if !new_player.is_able_to_fight
             game_over = true
             puts "You are too damaged to continue!".red
             slow_print("GAME OVER!", 0.5)
+        #But if only the final boss can't fight, then the player has won (game over)
         elsif !enemy_5.is_able_to_fight
             game_over = true
             slow_print("You have defeated all 5 bosses!", 0.05)
@@ -55,8 +57,6 @@ def main
             slow_print("THE END!", 0.5)
         end
     end
-    #But if only the final boss can't fight, then the player has won
-    
     puts "\n"
 end
 

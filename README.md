@@ -1,5 +1,15 @@
 # Game of Death
 
+## Table of Contents
+* [Repository](#Repository)
+* [Purpose and Scope](#Purpose-&-Scope)
+* [Features](#Features)
+* [Outline](#Outline)
+* [Gameplay Loop](#Gameplay-Loop)
+* [Implementation Plan](#Implementation-Plan)
+* [Help](#Help)
+
+
 ## Repository:
 https://github.com/Radicals27/game_of_death
 
@@ -25,7 +35,7 @@ Any errors that are encountered, such as invalid user input, will prompt the use
 
 ## Gameplay loop
 
-ADD UML HERE!!!!!!!!
+
 
 ## Implementation Plan
 
