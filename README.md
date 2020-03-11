@@ -54,7 +54,7 @@ https://github.com/Radicals27/game_of_death/blob/master/Game%20of%20Death.png
 ## Implementation Plan
 
 ### Combat System
-For the text-based combat system, it was decided after careful consideration that classes would be an ideal method to implement such an idea.  Classes allow tracking of instance variables or attributes, such as "health" and "accuracy", as well as functions, such as those involved in calculating damage and whether or not an attack has hit an opponent.  Both the player and the enemies could be represented this way to minimise code and maintain D.R.Y standards.
+For the text-based combat system, it was decided after careful consideration that classes would be an ideal method to implement such an idea.  Classes allow tracking of instance variables or attributes, such as "health" and "accuracy", as well as functions, such as those involved in calculating damage and whether or not an attack has hit an opponent.  Both the player and the enemies could be represented this way to minimise code and maintain D.R.Y standards.  An enemy-specific class would be ideal, that inherits from the "Human" class, so that enemy specific actions such as speaking, could take place.
 
 Once the UML flow chart was completed, it became clear that a seperate method for fighting (between player and a given enemy) and an initial "main" method would be necessary to hold all of the contents.
 
@@ -64,16 +64,32 @@ Methods, classes and data (dialogue and verbose location descriptions) would be 
 
 External gems were included to add to the game to add flair and improved visuals. These include colorize and tty-font.  Tty-font allows printing of large text using ASCII characters for the title screen.  Colorize allows printing some text in red, yellow and green for negative events (damage taken), low health and positive events (enemy defeated) respectively.
 
+#### Checklist:
+- Set up Human class, with Enemy class which inherits from Human
+- Create a hash to store Limbs and their health values
+- Create class methods for taking damage, checking if an attack has hit and checking if an enemy can still fight
+- Create dialogue and location method to return pre-written spoken dialogue and location descriptions
+- Install bundler and create Gem file with necessary Gem references
+
+
 ### Damage System
 
 The handling of damage will occur between class/instance variables and methods.  For example, when the player selects to attack an enemy with a punch and chooses to target their right arm, the "take_damage" method writes to the recipients "@limbs" hash, finds the matching targeted limb, and subtracts the final "damage" amount from its stored value.
 
 If enough damage is done to the recipients limb, it becomes crippled and cannot be used.  2 crippled arms means the person cannot punch, 2 crippled legs means they cannot kick, a crippled head severely affects accuracy, and other limbs have no effect.  Each unit of damage that is done to a limb also reduces the person's health.  When their health is 0, they are defeated.  Or if their randomised "weakness" (a randomly selected limb) is crippled, they are also defeated.
 
+#### Checklist:
+- Create fight() method, which takes a player and enemy object
+- Incorporate checks for player and enemy's ability to fight (0 health?) and handle both outcomes
+
 ### Unique battles with Unique characters
 The game aims to have a comical feel, with verbose opponents who taunt and poke fun at the player when he misses attacks.  Sometimes opponents will even reveal their weaknesses, so it pays to pay attention.  When an enemy speaks, it is randomly selected from an array, so each battle is slightly different.  A player hopefully feels encouraged to play the game through multiple times to discover each piece of dialogue.
 
-- outlines how each feature will be implemented and a checklist of tasks for each feature
+#### Checklist:
+- Write detailed, witty dialogues for the opponents
+- Write at least 6 dialogue options for each opponent in combat
+
+
 
 - prioritise the implementation of different features, or checklist items within a feature
 - provide a deadline, duration or other time indicator for each feature or checklist/checklist-item
