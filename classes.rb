@@ -55,23 +55,36 @@ class Human
     def take_damage(body_part, damage)
         if body_part == @limbs.key(@weakness)   #If the attack hits their weakness it does 1.5x damage
             @limbs[body_part][1] -= damage*1.5
+            if @limbs[body_part][1] <0 then @limbs[body_part][1] = 0 end   #Can't go lower than 0hp
+            @health -= damage
+        elsif body_part == "h"
+            if @limbs[body_part][1] - damage <= 0   #If head hp would be less than 0 after taking this damage...
+                damage = @limbs[body_part][1]   #Reduce damage to the amount of hp it has
+                @limbs[body_part][1] = 0        #And set head hp to 0
+                @health -= damage
+            else
+                @limbs[body_part][1] -= damage
+            end
+            @accuracy = @accuracy - damage   #Getting hit in the head reduces accuracy
         else
-            @limbs[body_part][1] -= damage
+            @limbs[body_part][1] -= damage 
+            if @limbs[body_part][1] <0 then @limbs[body_part][1] = 0 end
+            @health = @health - damage
         end
         @is_able_to_fight = check_ability_to_fight   #Check if this attack removes their ability to fight
     end
     #If both arms and legs are crippled, they can't fight. Same for torso, head and/or groin
     def check_ability_to_fight
-        if @limbs["h"][1] <= 0 or @limbs["t"][1] <= 0 or @limbs["g"][1] <= 0
-            return false   #head, torso or groin are destroyed
-        elsif @limbs["ra"][1] <= 0 and @limbs["la"][1] <= 0 and @limbs["rl"][1] <= 0 and @limbs["ll"][1] <= 0 
+        if @limbs["ra"][1] <= 0 and @limbs["la"][1] <= 0 and @limbs["rl"][1] <= 0 and @limbs["ll"][1] <= 0 
             return false   #all 4 limbs are destroyed
+        elsif @health <= 0
+            return false   #Their health is 0 or less
         elsif self.class.to_s == "Enemy"
-            if @weakness[1] <= 0
+            if @weakness[1] <= 0   #or if the enemies weakness is 0hp
                 return false
             end
         end
-        return true
+        return true   #otherwise they can still fight
     end
 end
 

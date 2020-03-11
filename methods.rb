@@ -93,7 +93,7 @@ def fight(player, location, enemies)
                     damage = rand(5..10) + (higher(opponent.limbs["ra"][1], opponent.limbs["la"][1]))/10
                     player.take_damage(player.limbs.key(target_selection), damage)
                 elsif attack_selection == "k"
-                    damage = rand(8..15) + (higher(opponent.limbs["rl"][1], opponent.limbs["ll"][1]))/10
+                    damage = rand(10..20) + (higher(opponent.limbs["rl"][1], opponent.limbs["ll"][1]))/10
                     player.take_damage(player.limbs.key(target_selection), damage)
                 end
                 puts "#{opponent.name} hits you in the #{target_selection[0]}!".red
@@ -135,7 +135,7 @@ def display_stats(person)
             print "#{stat[0]}:#{stat[1]} // "
         end
     end
-    print "\n"
+    print "#{person.health}\n"
     STDOUT.flush
 end
 
