@@ -36,8 +36,10 @@ def fight(player, location, enemies)
         elsif attack_selection == "k"
             damage = rand(8..15) + (higher(player.limbs["rl"][1], player.limbs["ll"][1]))/10
         end
+        damage = damage.to_i
         system "clear"
-        display_stats(player)  
+        display_stats(player)
+        display_stats(opponent)
         puts "Where would you like to target?"
         puts "(h)ead (ra)right arm (la)left arm (ll)left leg (rl)right leg (g)roin (t)orso (h)ead"
 
@@ -54,6 +56,7 @@ def fight(player, location, enemies)
             opponent.take_damage(target_selection, damage)  #Calculate damage and modify opponents health
             system "clear"
             display_stats(player)
+            display_stats(opponent)
             puts "#{opponent.name} was hit in the #{opponent.limbs[target_selection][0]}".red
 
             #If struck limb is crippled (<0 health) then print a damage message to indicate this
@@ -65,6 +68,7 @@ def fight(player, location, enemies)
         else
             system "clear"
             display_stats(player)
+            display_stats(opponent)
             puts "you missed!".yellow
             print "#{opponent.name}: "
             slow_print(taunts, 0.05)    #Opponent taunts player
@@ -121,9 +125,9 @@ def display_stats(person)
         person.limbs["la"], person.limbs["ll"], person.limbs["rl"]
     ]
     output = ""
-
+    print "#{person.name}: Health: #{person.health} // "
     for stat in stats_to_display
-        if stat[1] <= 10
+        if stat[1] <= 10 and stat[1] > 0
              print "#{stat[0]}:"
              print "#{stat[1]} ".yellow
              print "// "
@@ -135,7 +139,7 @@ def display_stats(person)
             print "#{stat[0]}:#{stat[1]} // "
         end
     end
-    print "#{person.health}\n"
+    print "\n"
     STDOUT.flush
 end
 

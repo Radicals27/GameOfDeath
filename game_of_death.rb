@@ -31,10 +31,10 @@ def main
 
     new_player = Human.new("Bruce", 100, 80, 1)      
     enemy_1 = Enemy.new("Hwang", 25, 60, 1, "kick")
-    enemy_2 = Enemy.new("Taky", 35, 65, 2, "punch")
-    enemy_3 = Enemy.new("Dan", 50, 70, 3)
-    enemy_4 = Enemy.new("Ji", 60, 75, 4, "punch")
-    enemy_5 = Enemy.new("Kareem", 75, 85, 5)
+    enemy_2 = Enemy.new("Taky", 30, 65, 2, "punch")
+    enemy_3 = Enemy.new("Dan", 35, 70, 3)
+    enemy_4 = Enemy.new("Ji", 40, 75, 4, "punch")
+    enemy_5 = Enemy.new("Kareem", 45, 85, 5)
     enemies = [enemy_1, enemy_2, enemy_3, enemy_4, enemy_5]
 
     slow_print(location_descriptions(0), 0.05)

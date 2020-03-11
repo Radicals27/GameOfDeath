@@ -54,7 +54,7 @@ class Human
     #Manages damage from an attack
     def take_damage(body_part, damage)
         if body_part == @limbs.key(@weakness)   #If the attack hits their weakness it does 1.5x damage
-            @limbs[body_part][1] -= damage*1.5
+            @limbs[body_part][1] -= (damage*1.5).to_i
             if @limbs[body_part][1] <0 then @limbs[body_part][1] = 0 end   #Can't go lower than 0hp
             @health -= damage
         elsif body_part == "h"

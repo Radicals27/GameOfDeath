@@ -99,7 +99,7 @@ ADD TRELLO HERE!!!!!!
 ## Help
 
 ADD HELP DOCUMENTATION HERE!!!!
- - steps to install the application
+- steps to install the application
 - any dependencies required by the application to operate
 - any system/hardware requirements
 
