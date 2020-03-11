@@ -23,9 +23,11 @@ def fight(player, location, enemies)
             when "k"
                 puts "(k)ick"
             end
+
             attack_selection = gets.chomp
+
             begin
-                raise NameError, "Invalid key" if !["p", "k"].include?(attack_selection)    #Handler for invalid input
+                raise NameError, "Invalid key" if !player.get_combat_options.include?(attack_selection)    #Handler for invalid input
             rescue NameError => e
                 puts "ERROR: #{e}"
             end
@@ -72,7 +74,6 @@ def fight(player, location, enemies)
             puts "you missed!".yellow
             print "#{opponent.name}: "
             slow_print(taunts, 0.05)    #Opponent taunts player
-            print "\n"
         end
         
         #Now opponent attacks player...
@@ -80,16 +81,25 @@ def fight(player, location, enemies)
             target_selection = player.get_random_limb   #Opponent targets a random player limb
 
             #If enemy has a preferred attack, that becomes their attack selection
-            if opponent.prefers_attack == "p"
+            if opponent.prefers_attack == "p" and ["p"].include?(opponent.get_combat_options)
                 puts "#{opponent.name} tries to punch you in your #{target_selection}"
                 attack_selection = "p"
-            elsif opponent.prefers_attack == "k"
+            elsif opponent.prefers_attack == "k"  and ["k"].include?(opponent.get_combat_options)
                 puts "#{opponent.name} tries to kick you in your #{target_selection[0]}"
                 attack_selection = "k"
             #Otherwise, randomise their attack selection:
             else
-                rand(1..2) == 1 ? attack_selection = "p" : attack_selection = "k"
-                puts "#{opponent.name} tries to #{attack_selection == "p" ? "punch" : "kick"} you in your #{target_selection[0]}"
+                if opponent.get_combat_options.include?("p")
+                    attack_selection = "p"
+                    puts "#{opponent.name} tries to punch you in your #{target_selection[0]}"
+                elsif opponent.get_combat_options.include?("k")
+                    attack_selection = "k"
+                    puts "#{opponent.name} tries to kick you in your #{target_selection[0]}"
+                else
+                    puts "#{opponent.name} has no way to attack you!"
+                    return false
+                end
+                
             end
             
             if opponent.attack_has_hit(attack_selection)    #Opponent hits player
@@ -100,7 +110,7 @@ def fight(player, location, enemies)
                     damage = rand(10..20) + (higher(opponent.limbs["rl"][1], opponent.limbs["ll"][1]))/10
                     player.take_damage(player.limbs.key(target_selection), damage)
                 end
-                puts "#{opponent.name} hits you in the #{target_selection[0]}!".red
+                puts "#{opponent.name} hits you in the #{target_selection[0]} for #{damage} damage!".red
             else
                 puts "...And misses.".yellow   #Enemy misses player
             end

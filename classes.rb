@@ -47,7 +47,7 @@ class Human
         elsif attack_type == "k"
             if (rand(1..100)+15) < @accuracy
                 return true   #kick did hit
-            end
+            end 
         end
         return false   #did not hit
     end

@@ -35,7 +35,7 @@ end
 def speak(index, struck_limb, weak_limb)
     dialogues = [
         ["OW!", "Ow! My #{struck_limb}!", "I love my #{weak_limb}...", "Don't hit my weak #{weak_limb}!!", "Nooooo! My #{struck_limb}!", "Good thing I don't need me #{struck_limb}!"],
-        ["Oof!", "I'm removing you from Facebook...", "*Strokes his #{weak_limb}", "Why'd you have to hit my #{struck_limb}??", "Whatever you do don't hit my #{weak_limb}!", "That hurt more than my last break up!"],
+        ["Oof!", "I'm removing you from Facebook...", "*Strokes his #{weak_limb}*", "Why'd you have to hit my #{struck_limb}??", "Whatever you do don't hit my #{weak_limb}!", "That hurt more than my last break up!"],
         ["Oh my God that smarts!", "Owie owie owie!!", "If I put on my glasses would you stop hitting me?", "I'm a bleeder!", "Weak #{weak_limb}?  Who said I had a weak #{weak_limb}??", "Why God? Why!?"],
         ["*cries*", "What did my #{struck_limb} ever do to you?", "My God you're strong! I see why your girlfriend likes you.", "I think we went to the same school!", "I'm so glad you don't know about my weak #{weak_limb}!"],
         ["OW! I should've become a programmer...", "I won't let my family down!", "I was about to pass GO, too!", "I feel lighter without my #{struck_limb}","I don't need my #{struck_limb} anyway!", "You just landed on Mayfair, sucka!!"],

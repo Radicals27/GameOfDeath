@@ -1,8 +1,3 @@
-# Desired features: 
-#Updates player stats bar upon game over so player can see final damaged limb/s
-#Doesn't repeat opponent sayings/taunts
-#Add secret (cheat) attack - (g)un?
-
 require "rubygems"
 require "bundler/setup"
 require "colorize"
