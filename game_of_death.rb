@@ -28,7 +28,7 @@ def main
 
     #Setup initial objects
     game_over = false
-    
+
     new_player = Human.new("Bruce", 100, 80, 1)      
     enemy_1 = Enemy.new("Hwang", 40, 60, 1, "kick")
     enemy_2 = Enemy.new("Taky", 50, 65, 2, "punch")

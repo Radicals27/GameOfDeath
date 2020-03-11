@@ -89,7 +89,7 @@ The game aims to have a comical feel, with verbose opponents who taunt and poke 
 - Write detailed, witty dialogues for the opponents
 - Write at least 6 dialogue options for each opponent in combat
 
-
+Please refer to the Trello Board (linked below) for the implementation plan:
 
 - prioritise the implementation of different features, or checklist items within a feature
 - provide a deadline, duration or other time indicator for each feature or checklist/checklist-item
