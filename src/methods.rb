@@ -124,8 +124,20 @@ end
 
 #Prints a given string one char at a time, at a given speed
 def slow_print(string, speed)
+    text_wrap_width = 100
+    counter = 0
     STDIN.echo = false
-    string.each_char {|c| putc c ; sleep speed}
+    string.each_char {|c| putc c ; 
+        sleep speed
+        if counter > text_wrap_width   #text is now at minimum width
+            if c == " "
+                puts "\n"
+                counter = 0
+            end
+        else
+            counter += 1
+        end
+    }
     puts "\n"
     STDIN.echo = true
 end
