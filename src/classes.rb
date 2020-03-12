@@ -96,6 +96,7 @@ class Enemy < Human
         super
         @prefers_attack = prefers_attack
         @weakness = self.get_random_limb    #Set a random limb to be a weak limb (if crippled, will remove them from combat)
+    end
     def talk(struck_limb)   #When player hits the enemy, talk() is called
         return "#{@name}: #{speak(@location-1, struck_limb, @weakness[0])}"
     end
