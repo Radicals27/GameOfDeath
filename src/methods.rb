@@ -119,7 +119,7 @@ def fight(player, location, enemies)
             else
                 display_stats(player)
                 display_stats(opponent)
-                puts "...And misses.".yellow   #Enemy misses player
+                puts "...And he misses.".yellow   #Enemy misses player
             end
         else
             puts "#{opponent.name} is too damaged to continue!\nYou win!".green

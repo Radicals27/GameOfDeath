@@ -35,8 +35,8 @@ end
 #Things enemies will say when you hit them
 def speak(index, struck_limb, weak_limb)
     dialogues = [
-        ["OW!", "Ow! My #{struck_limb}!", "I love my #{weak_limb}...", "Don't hit my weak #{weak_limb}!!", "Nooooo! My #{struck_limb}!", "Good thing I don't need my #{struck_limb}!"],
-        ["Oof!", "I'm removing you from Facebook...", "*Strokes his #{weak_limb}*", "Why'd you have to hit my #{struck_limb}??", "Whatever you do don't hit my #{weak_limb}!", "That hurt more than my last break up!"],
+        ["OW!", "Ow! My #{struck_limb}!", "I love my #{weak_limb}...", "Don't hit my weak #{weak_limb}!!", "Nooooo! My #{struck_limb}!", "Good thing I don't need my #{struck_limb}!", "What did I ever do to you??"],
+        ["Oof!", "I'm removing you from Facebook...", "*He is cradling his #{weak_limb}*", "Why'd you have to hit my #{struck_limb}??", "Whatever you do don't hit my #{weak_limb}!", "That hurt more than my last git addbreak up!"],
         ["Oh my God that smarts!", "Owie owie owie!!", "If I put on my glasses would you stop hitting me?", "I'm a bleeder!", "Weak #{weak_limb}?  Who said I had a weak #{weak_limb}??", "Why God? Why!?"],
         ["*cries*", "What did my #{struck_limb} ever do to you?", "My God you're strong! I see why your girlfriend likes you.", "I think we went to the same school!", "I'm so glad you don't know about my weak #{weak_limb}!"],
         ["OW! I should've become a programmer...", "*He tumbles backwards over the Monopoly board*", "I was about to pass GO, too!", "Good thing I don't need my #{struck_limb}", "I'm about to bankrupt you, fool!!", "You just landed on Mayfair, sucker!!", "If it'll make you stop hitting me, my weakness is my #{weak_limb}."],
