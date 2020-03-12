@@ -101,6 +101,9 @@ def fight(player, location, enemies)
                 end
                 
             end
+
+            pause("Press enter to see if he hits you...!")
+            system "clear"
             
             if opponent.attack_has_hit(attack_selection)    #Opponent hits player
                 if attack_selection == "p"
@@ -110,8 +113,12 @@ def fight(player, location, enemies)
                     damage = rand(10..20) + (higher(opponent.limbs["rl"][1], opponent.limbs["ll"][1]))/10
                     player.take_damage(player.limbs.key(target_selection), damage)
                 end
+                display_stats(player)
+                display_stats(opponent)
                 puts "#{opponent.name} hits you in the #{target_selection[0]} for #{damage} damage!".red
             else
+                display_stats(player)
+                display_stats(opponent)
                 puts "...And misses.".yellow   #Enemy misses player
             end
         else
