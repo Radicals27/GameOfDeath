@@ -1,14 +1,14 @@
 # Game of Death
 
 ## Table of Contents
-* [Referenced material](#R3.Referenced-material)
-* [Repository](#R4.Repository)
-* [Purpose and Scope](#R5.Purpose-&-Scope)
-* [Features](#R6.Features)
-* [Outline](#R7.Outline)
-* [Gameplay Loop](#R8.Gameplay-Loop-Diagram)
-* [Implementation Plan](#R9.Implementation-Plan)
-* [Help](#R10.Help)
+* [Referenced material](#R3-Referenced-material)
+* [Repository](#R4-Repository)
+* [Purpose and Scope](#R5-Purpose-&-Scope)
+* [Features](#R6-Features)
+* [Outline](#R7-Outline)
+* [Gameplay Loop](#R8-Gameplay-Loop-Diagram)
+* [Implementation Plan](#R9-Implementation-Plan)
+* [Help](#R10-Help)
 
 ## R3. Referenced Material
 For character names and story background:
@@ -60,7 +60,7 @@ Once the UML flow chart was completed, it became clear that a seperate method fo
 
 As dialogue would play a large part in the games functionality, arrays were needed to store the various dialogues that enemies could speak.  It was decided to store these in methods which would return either a random sample, or elements from a sub-array in the case of enemy-specific dialogue. (dialogue[3][element] for the 3rd enemies dialogue element, for example.)
 
-Methods, classes and data (dialogue and verbose location descriptions) would be split into their own ruby (.rb) files.  The main program, containing the main method (and its initial call), as well as the "require" codes and class initialisations, would be placed in the game_of_death.rb file.
+Methods, classes and data (dialogue and verbose location descriptions) would be split into their own ruby (.rb) files.  The main program, containing the main method (and its initial call), as well as the "require" codes and class initialisations, would be placed in the game_of_death.rb file.  A 'tests.rb' file was created to hold the testing methods used to validate functionality of class methods.
 
 External gems were included to add to the game to add flair and improved visuals. These include colorize and tty-font.  Tty-font allows printing of large text using ASCII characters for the title screen.  Colorize allows printing some text in red, yellow and green for negative events (damage taken), low health and positive events (enemy defeated) respectively.
 
@@ -76,14 +76,18 @@ External gems were included to add to the game to add flair and improved visuals
 
 The handling of damage will occur between class/instance variables and methods.  For example, when the player selects to attack an enemy with a punch and chooses to target their right arm, the "take_damage" method writes to the recipients "@limbs" hash, finds the matching targeted limb, and subtracts the final "damage" amount from its stored value.
 
+The damage caused by punches is affected by the health of the puncher's arms.  Same for kicks.  If an enemy specialises in kicks, it pays to target their legs.
+
 If enough damage is done to the recipients limb, it becomes crippled and cannot be used.  2 crippled arms means the person cannot punch, 2 crippled legs means they cannot kick, a crippled head severely affects accuracy, and other limbs have no effect.  Each unit of damage that is done to a limb also reduces the person's health.  When their health is 0, they are defeated.  Or if their randomised "weakness" (a randomly selected limb) is crippled, they are also defeated.
 
 #### Checklist:
 - Create 'fight' method, which takes a player and enemy object and has them battle, with prompts
 - Incorporate checks for player and enemy's ability to fight (0 health?) and handle both outcomes
 - Check if both arms are crippled, if so, they cannot punch.
+- When calculating damage, factor in arms or legs health for punches/kicks respectively.
 - Check if both legs are crippled, if so, they cannot kick.
 - For each unit of damage their head takes, reduce their accuracy by that amount.
+- If the damaged limb reaches 0hp and is the enemy's weakness, the player wins the battle.
 
 ### Unique battles with Unique characters
 The game aims to have a comical feel, with verbose opponents who taunt and poke fun at the player when he misses attacks.  Sometimes opponents will even reveal their weaknesses, so it pays to pay attention.  When an enemy speaks, it is randomly selected from an array, so each battle is slightly different.  A player hopefully feels encouraged to play the game through multiple times to discover each piece of dialogue.
@@ -101,7 +105,7 @@ https://trello.com/b/M8VsoZnM/game-of-death
 
 or:
 
-[Offline version](https://github.com/Radicals27/game_of_death/blob/master/GameOfDeathTrello.png)
+[Offline version](https://github.com/Radicals27/game_of_death/blob/master/gameofdeathtrellofinal.png)
 
 ## R10. Help
 
@@ -135,7 +139,7 @@ You will then be asked what body part to target on your opponent.
 
 Pay attention to the status bar at the top of the screen!  It will give you an idea of which body parts are still healthy or weak.
 
-## Guide to combat
+### Guide to combat
 
 Punching is much more accurate than kicking, but deals less damage.  The healthier your arms are, the more damage they do.  Kicking is less accurate but deals far more damage than punching, and the healthier your legs are, the more damage they do.
 
@@ -145,29 +149,18 @@ Every unit of damage a persons head takes, reduces their accuracy by 1 unit.  So
 
 Attacking the groin or torso have no special effects, except in the instance of...
 
-## Weaknesses
+### Weaknesses
 
 Each opponent comes with a randomly-selected weakness.  A limb that when struck, will take 1.5x damage.  In addition to this, if it is crippled (reduced to 0 health) you will automatically win the fight!
 
 Opponents will sometiems reveal their weaknesses to you when they speak, so pay attention!
 
-## Replayability
+### Replayability
 
 Try to get through the game with more health at the final screen than your previous attempts!  Can you find all 5 enemies weaknesses?
 
 Can you find/read all of the enemies random dialogue?
 
-
-# !! DONT FORGET TO PACKAGE IT (R19 criteria) into a .SH script!
-
-#Final deliverable:
-/docs/<documentation>, readme.md, help file, etc ALL LINKS TO ONLINE MATERIAL MUST HAVE SCREENSHOTS!!>
-/ppt/<presentation>
-/src/<source code, does not need to include .git/ folder>
-
-
-### As you can see from the above code, it will be a fun game.
----
 
 
 ![Bruce Lee](https://thediplomat.com/wp-content/uploads/2013/12/sizes/medium/yellowjumpsuit_edited.jpg)
