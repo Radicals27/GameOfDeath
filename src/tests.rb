@@ -6,7 +6,6 @@
 require "test/unit"
 require_relative "./classes.rb"
 
-
 class GameTest < Test::Unit::TestCase
     #This test passes as right arm is equal to 15 after taking 10 damage
     def test_take_damage

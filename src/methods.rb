@@ -149,7 +149,19 @@ def display_stats(person)
         person.limbs["la"], person.limbs["ll"], person.limbs["rl"]
     ]
     output = ""
-    print "#{person.name}: Health: #{person.health} // "
+    if person.health >= 20
+        print "#{person.name}: Health: "
+        print "#{person.health}".green
+        print " // "
+    elsif person.health <20 && person.health >= 10
+        print "#{person.name}: Health: "
+        print "#{person.health}".yellow
+        print " // "
+    else
+        print "#{person.name}: Health: "
+        print "#{person.health}".red
+        print " // "
+    end
 
     #Displays the health stats at the top of the screen
     for stat in stats_to_display
@@ -162,7 +174,8 @@ def display_stats(person)
             print "CRIPPLED ".red
             print "// "
         else
-            print "#{stat[0]}:#{stat[1]} // "
+            print "#{stat[0]}:"
+            print "#{stat[1]} ".colorize(:light_green)
         end
     end
     print "\n"
