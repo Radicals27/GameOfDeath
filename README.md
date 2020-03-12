@@ -49,7 +49,7 @@ Any errors that are encountered, such as invalid user input, will prompt the use
 ## R8. Gameplay loop Diagram
 Please refer to the UML diagram (linked below) for a visual representation of the gameplay loop.
 
-[Game of Death UML Diagram](https://github.com/Radicals27/game_of_death/blob/master/Game%20of%20Death.png)
+[Game of Death UML Diagram](https://github.com/Radicals27/game_of_death/blob/master/docs/Game%20of%20Death.png)
 
 ## R9. Implementation Plan
 
@@ -105,7 +105,7 @@ https://trello.com/b/M8VsoZnM/game-of-death
 
 or:
 
-[Offline version](https://github.com/Radicals27/game_of_death/blob/master/gameofdeathtrellofinal.png)
+[Offline version](https://github.com/Radicals27/game_of_death/blob/master/docs/gameofdeathtrellofinal.png)
 
 ## R10. Help
 
