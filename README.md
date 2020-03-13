@@ -89,6 +89,36 @@ If enough damage is done to the recipients limb, it becomes crippled and cannot 
 - For each unit of damage their head takes, reduce their accuracy by that amount.
 - If the damaged limb reaches 0hp and is the enemy's weakness, the player wins the battle.
 
+#### Methods:
+- game_of_death.rb
+    - main()
+
+- methods.rb
+    - fight(player, location, enemies)
+    - slow_print(message, speed)
+    - display_stats(person)
+    - higher(num1, num2)
+    - pause(message)
+
+- classes.rb
+    - Human class
+        - initialize(name, health, accuracy, location, - prefers_attack)
+        - get_random_limb()
+        - get_combat_options()
+        - attack_has_hit(attack_type)
+        - take_damage(body_part, damage)
+        - check_ability_to_fight
+
+    - Enemy < Human class
+        - initialize(name, health, accuracy, location, prefers_attack)
+        - talk(struck_limb)
+
+- data.rb
+    - location_descriptions(index, player)
+    - taunts()
+    - speak(index, struck_limb, weak_limb)
+    - damage_message(limb)
+
 ### Unique battles with Unique characters
 The game aims to have a comical feel, with verbose opponents who taunt and poke fun at the player when he misses attacks.  Sometimes opponents will even reveal their weaknesses, so it pays to pay attention.  When an enemy speaks, it is randomly selected from an array, so each battle is slightly different.  A player hopefully feels encouraged to play the game through multiple times to discover each piece of dialogue.
 
@@ -127,9 +157,22 @@ In your terminal, to install all necessary Gems from the Gemfile automatically.
 then run:
 
 ```ruby
-ruby game_of_death.rb
+./runme.sh
 ```
-To start the game.
+To start the game.  
+
+NOTE: There is a command line option to change the player's name to another name.  To edit this, open "runme.sh" in a text editor and change the line:
+
+```ruby
+ruby ./game_of_death.rb "Bruce"
+```
+
+To something like:
+
+```ruby
+ruby ./game_of_death.rb "John"
+```
+
 
 You will be presented with the welcome screen and an introduction to what's happening in the story.
 
@@ -160,7 +203,5 @@ Opponents will sometiems reveal their weaknesses to you when they speak, so pay 
 Try to get through the game with more health at the final screen than your previous attempts!  Can you find all 5 enemies weaknesses?
 
 Can you find/read all of the enemies random dialogue?
-
-
 
 ![Bruce Lee](https://thediplomat.com/wp-content/uploads/2013/12/sizes/medium/yellowjumpsuit_edited.jpg)
