@@ -9,6 +9,7 @@ require_relative "methods.rb"
 require_relative "data.rb"
 
 def main
+
     if ARGV[0].class == String
         player_name = ARGV[0]
         ARGV.clear
@@ -16,7 +17,6 @@ def main
         player_name = "Bruce"
     end
     
-
     system "clear"
 
     #Present welcome screen
