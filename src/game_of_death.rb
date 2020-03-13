@@ -8,7 +8,15 @@ require_relative "classes.rb"
 require_relative "methods.rb"
 require_relative "data.rb"
 
-def main    
+def main
+    if ARGV[0].class == String
+        player_name = ARGV[0]
+        ARGV.clear
+    else
+        player_name = "Bruce"
+    end
+    
+
     system "clear"
 
     #Present welcome screen
@@ -22,7 +30,7 @@ def main
     #Setup initial objects
     game_over = false
 
-    new_player = Human.new("Bruce", 100, 80, 1)      
+    new_player = Human.new(player_name, 100, 80, 1)      
     enemy_1 = Enemy.new("Hwang", 25, 60, 1, "kick")
     enemy_2 = Enemy.new("Taky", 30, 65, 2, "punch")
     enemy_3 = Enemy.new("Dan", 35, 70, 3)
@@ -30,7 +38,7 @@ def main
     enemy_5 = Enemy.new("Kareem", 45, 85, 5)
     enemies = [enemy_1, enemy_2, enemy_3, enemy_4, enemy_5]
 
-    slow_print(location_descriptions(0), 0.05)
+    slow_print(location_descriptions(0, new_player), 0.05)
 
     while !game_over        
         fight(new_player, new_player.location, enemies)

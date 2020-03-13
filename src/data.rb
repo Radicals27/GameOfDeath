@@ -1,7 +1,7 @@
 #Descriptions of the beginning plus each of the 5 locations
-def location_descriptions(index)
+def location_descriptions(index, player)
     descriptions = [
-        "Your name is Bruce, and your girlfriend, Linda, has been kidnapped! The local mafia are keeping her in the top level of the mysterious pagoda on the outskirts of town...  You head towards it...",
+        "Your name is #{player.name}, and your girlfriend, Linda, has been kidnapped! The local mafia are keeping her in the top level of the mysterious pagoda on the outskirts of town...  You head towards it...",
         "When you arrive, you step inside.  The room is a dojo of some sort, there is a man meditating.  It is Hwang!  He is known for his brutal kicks!  He hears you enter and approaches you with anger in his eyes, get ready!",
         "You catch your breath and head upstairs.  It's a dark room with a single chair, where another angry man is sitting.  It is Taky, and he is watching PUNCH drunk love while drinking PUNCH...!  You wonder what this could all mean...  He gets up and screams as he lunges at you!",
         "Exhausted, you continue upstairs.  Into an even darker room with an even angrier, louder man, who you know nothing about!  Get ready!",
