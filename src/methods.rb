@@ -6,7 +6,7 @@ def fight(player, location, enemies)
         end
     end
 
-    slow_print(location_descriptions(player.location), 0.05)    #Display the location's info
+    slow_print(location_descriptions(player.location, player), 0.05)    #Display the location's info
     puts "\n#{player.name} is attacking #{opponent.name}...".red
 
     while player.is_able_to_fight and opponent.is_able_to_fight     #Core loop, only executes while either the play or
